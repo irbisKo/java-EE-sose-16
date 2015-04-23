@@ -5,12 +5,12 @@ Java EE Project for SoSe 2015
 # Database
 Set up steps for your Database:
  1. Create a schema: 'votes' 
- 2. Set your config settings in hibernate.cfg.xml. (See snippet below)
- ```xml
+ 2. Set your config settings in hibernate.cfg.xml. (See snippet below
+```xml
  <property name="hibernate.connection.username">root</property>
  <property name="hibernate.connection.password"></property>
  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/votes</property>
- ```
+```
  3. Set your config settings in the pom.xml in the flywaydb plugin. (See snippet below)
  ```xml
  <plugin>
