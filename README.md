@@ -46,5 +46,5 @@ Vx__ACTION.sql  #x is incrementing
 ```bash
  mvn clean install
 ```
-after that you get a votes.war.
-Deploy this votes.war to your application server.
+After that you get a votes.war, located in target/votes.war
+Deploy votes.war to your application server.
