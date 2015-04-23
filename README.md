@@ -24,9 +24,9 @@ Set up steps for your Database:
  </plugin>
 ```
  4. Migrate database with
-    ```bash 
+```bash 
     mvn compile flyway:migrate
-    ```
+```
 
 Migrations are going to
 
