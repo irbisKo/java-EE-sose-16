@@ -12,7 +12,7 @@ Set up steps for your Database:
  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/votes</property>
 ```
  3. Set your config settings in the pom.xml in the flywaydb plugin. (See snippet below)
- ```xml
+```xml
  <plugin>
     <groupId>org.flywaydb</groupId>
     <artifactId>flyway-maven-plugin</artifactId>
@@ -22,7 +22,7 @@ Set up steps for your Database:
          <user>root</user>
      </configuration>
  </plugin>
- ```
+```
  4. Migrate database with
     ```bash 
     mvn compile flyway:migrate
