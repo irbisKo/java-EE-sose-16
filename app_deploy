@@ -1,0 +1,74 @@
+#!/bin/bash
+
+CUR_DIR=$(pwd)
+GLASS_FISH=$CUR_DIR/glassfish4
+
+print_usage() {
+        echo "Usage: app [TARGET]"
+        echo "TARGET:"
+        echo "- setup [DOMAIN_NAME]"
+        echo "- deploy [WAR_FILE]"
+	echo "- start [DOMAIN_NAME]"
+	echo "- stop [DOMAIN_NAME]"
+	echo "- create-domain [DOMAIN_NAME]"
+}
+
+case $1 in
+        setup)
+		if [ ! -d "$GLASS_FISH" ]; then
+			cd $CUR_DIR
+       			echo "--- Downloading Glassfish Server, please wait"
+        		wget --progress=bar http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip &> /dev/null
+       			echo "--- Extracting Glassfish Server"
+        		unzip glassfish-4.1.zip &> /dev/null
+			rm -f glassfish-4.1.zip
+		else
+        		echo "--- Glassfish available, skipping download."
+		fi
+		echo "Setup complete"
+                ;;
+        deploy)
+		if [ -z "$2" ] ; then
+                        echo "--- No WAR file specified, please provide a .war file"
+                        print_usage
+                        exit 1
+                fi
+		echo "--- Deploying Application $2"
+		$GLASS_FISH/bin/asadmin deploy --force $2
+
+		echo "Application $2 successfully deployed"
+                ;;
+	start)
+		if [ -z "$2" ] ; then
+                        echo "--- No domain specified, please provide a domain name"
+                        print_usage
+                        exit 1
+                fi
+		echo "--- Starting domain $2"
+                $GLASS_FISH/bin/asadmin start-domain $2
+		echo "Domain $2 started"
+		;;
+	stop)
+		if [ -z "$2" ] ; then
+                        echo "--- No domain specified, please provide a domain name"
+                        print_usage
+                        exit 1
+                fi
+		echo "--- Stopping domain $2"
+		$GLASS_FISH/bin/asadmin stop-domain $2
+		echo "Domain $2 stopped successfully"
+		;;
+	create-domain)
+		 if [ -z "$2" ] ; then
+                        echo "--- No domain specified, please provide a domain name"
+                        print_usage
+                        exit 1
+                fi
+		echo "--- Creating domain $2"
+		$GLASS_FISH/bin/asadmin create-domain $2
+		;;	
+
+        *)
+                print_usage
+                ;;
+esac
