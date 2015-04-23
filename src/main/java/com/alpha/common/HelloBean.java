@@ -1,7 +1,6 @@
 package com.alpha.common;
 
 import com.alpha.models.User;
-import com.alpha.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
