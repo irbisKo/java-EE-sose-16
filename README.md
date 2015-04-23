@@ -3,10 +3,14 @@
 Java EE Project for SoSe 2015
 
 # Database
-Migrate database with
-```bash
-mvn compile flyway:migrate
-```
+Set up steps for your Database:
+ 1. Create a schema: 'votes' 
+ 2. Set your config settings in hibernate.cfg.xml
+ 3. Set your config settings in the pom.xml in the flywaydb plugin
+ 4. Migrate database with
+    ```bash 
+    mvn compile flyway:migrate
+    ```
 
 Migrations are going to
 
