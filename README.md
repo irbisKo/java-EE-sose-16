@@ -20,9 +20,11 @@ Set up steps for your Database:
     <configuration>
          <url>jdbc:mysql://localhost:3306/votes</url>
          <user>root</user>
+         <password>mySecretPwd</password>
      </configuration>
  </plugin>
 ```
+Omit the password tag if your database has no password set.
  4. Migrate database with
 ```bash 
     mvn compile flyway:migrate
