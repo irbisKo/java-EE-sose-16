@@ -5,7 +5,7 @@ Java EE Project for SoSe 2015
 # Database
 Set up steps for your Database:
  1. Create a schema: 'votes' 
- 2. Set your config settings in hibernate.cfg.xml. (See snippet below
+ 2. Set your config settings in 'src/main/resources/hibernate.cfg.xml'. (See snippet below
 ```xml
  <property name="hibernate.connection.username">root</property>
  <property name="hibernate.connection.password"></property>
@@ -20,9 +20,11 @@ Set up steps for your Database:
     <configuration>
          <url>jdbc:mysql://localhost:3306/votes</url>
          <user>root</user>
+         <password>mySecretPwd</password>
      </configuration>
  </plugin>
 ```
+Omit the password tag if your database has no password set.
  4. Migrate database with
 ```bash 
     mvn compile flyway:migrate
