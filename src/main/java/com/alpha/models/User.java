@@ -9,7 +9,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements IModel {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,16 +30,6 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        setCreatedAt(new Date());
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        setUpdatedAt(new Date());
-    }
 
     public Long getId() {
         return id;
