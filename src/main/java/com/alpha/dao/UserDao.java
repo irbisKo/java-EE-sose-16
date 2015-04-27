@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by erwinschens on 27.04.15.
  */
-public class UserDao extends BaseDao<User> {
+public class UserDao extends BaseDao<User> implements IUserDao {
     public void persist(User entity) {
         getCurrentSession().save(entity);
     }
