@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:body>
-    <ui:composition template="/layouts/application.xhtml">
-        <ui:define name="content">
-            <h2><h:outputText value="#{i18n['hello']}"/></h2>
-            <h:form>
-                <h:inputText value="#{helloBean.name}" />
-                <h:commandButton value="Welcome Me" action="welcome"/>
+
+<ui:composition template="/templates/default/main.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:b="http://bootsfaces.net/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+
+        <b:jumbotron>
+            <h1><h:outputText value="#{i18n['hello']}"/> Much I18n</h1>
+            <h:form styleClass="form-horizontal">
+                <b:inputText value="#{helloBean.name}" placeholder="Such Welcome, Much wow, So Business">
+                    <f:facet name="prepend">
+                        <h:outputText value="Name" />
+                    </f:facet>
+                    <f:facet name="append">
+                        <b:commandButton value="Welcome Me" look="primary" action="welcome" />
+                    </f:facet>
+                </b:inputText>
             </h:form>
-        </ui:define>
-    </ui:composition>
-</h:body>
-</html>
+        </b:jumbotron>
+    </ui:define>
+</ui:composition>
+
+
 
