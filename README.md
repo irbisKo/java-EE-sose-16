@@ -1,3 +1,9 @@
+# Nothing to see here
+disperse please.
+
+Only madness awaits you.
+(This is a University Project, we need the the (money) ECTS
+
 # java-EE-sose-15
 
 Java EE Project for SoSe 2015
