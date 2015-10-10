@@ -18,7 +18,7 @@ case $1 in
 		if [ ! -d "$GLASS_FISH" ]; then
 			cd $CUR_DIR
        			echo "--- Downloading Glassfish Server, please wait"
-        		wget --progress=bar http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip &> /dev/null
+        		wget --progress=bar http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip
        			echo "--- Extracting Glassfish Server"
         		unzip glassfish-4.1.zip &> /dev/null
 			rm -f glassfish-4.1.zip

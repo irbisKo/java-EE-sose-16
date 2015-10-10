@@ -12,5 +12,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         <mapping class="com.alpha.models.User"></mapping>
+        <mapping class="com.alpha.models.Poll"></mapping>
+        <mapping class="com.alpha.models.Role"></mapping>
     </session-factory>
 </hibernate-configuration>
