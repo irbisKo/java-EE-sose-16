@@ -3,64 +3,46 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by arturschens on 04.10.15.
- */
 @Entity
-@Table(name = "polls")
+@Table(name = Poll.TABLE_NAME)
 public class Poll implements IModel {
     private static final long serialVersionUID = 1L;
 
+    public static final String TABLE_NAME = "polls";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_CREATED_AT = "created_at";
+    public static final String COLUMN_UPDATED_AT = "updated_at";
+    public static final String COLUMN_TITLE = "title";
+    public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_END_AT = "end_at";
+    public static final String COLUMN_START_AT = "start_at";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = Poll.COLUMN_ID)
     private Long id;
 
-    @Column(name = "title", unique = true, nullable = false)
-    private String title;
-
-    @Column(name = "description", unique = true, nullable = false)
-    private String description;
-
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "start_at", nullable = false)
-    private Date startAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "end_at", nullable = false)
-    private Date endAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false)
+    @Column(name = Poll.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = Poll.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = Poll.COLUMN_TITLE, unique = true, nullable = false)
+    private String title;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = Poll.COLUMN_DESCRIPTION, unique = true, nullable = false)
+    private String description;
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = Poll.COLUMN_START_AT, nullable = false)
+    private Date startAt;
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = Poll.COLUMN_END_AT, nullable = false)
+    private Date endAt;
 
     public Date getEndAt() {
         return endAt;
@@ -92,5 +74,29 @@ public class Poll implements IModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+
     }
 }

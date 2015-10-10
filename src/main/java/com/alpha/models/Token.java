@@ -30,7 +30,7 @@ public class Token implements IModel {
     @Column(name = "token", unique = true, nullable = false)
     private String token;
 
-    @Column(name = "polls_id")
+    @Column(name = "poll_id")
     private Integer pollId;
 
     public int getPollId() {
