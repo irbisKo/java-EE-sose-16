@@ -20,7 +20,7 @@
         </b:jumbotron>
 
         <h:form>
-            <h2>Welcome #{loginBean.email}</h2>
+            <h2>Welcome #{loginBean.currentUser.email}</h2>
             <h:commandLink action="#{loginBean.logout}" value="Logout"></h:commandLink>
         </h:form>
 

@@ -1,6 +1,8 @@
 package com.alpha.common;
 
 import com.alpha.dao.login.LoginDao;
+import com.alpha.models.User;
+import com.alpha.service.UserService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +21,7 @@ public class LoginBean implements Serializable {
     private String password;
     private String message;
     private String email;
+    private User currentUser;
 
     public String getEmail() {
         return email;
@@ -30,6 +33,10 @@ public class LoginBean implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     public void setEmail(String email) {
@@ -47,6 +54,7 @@ public class LoginBean implements Serializable {
     public String validateEmailPassword() {
         boolean valid = LoginDao.validate(email, password);
         if (valid) {
+            this.currentUser = new UserService().findByEmailAndPassword(email, password);
             HttpSession session = SessionBean.getSession();
             session.setAttribute("email", email);
             return "hello";
@@ -56,9 +64,10 @@ public class LoginBean implements Serializable {
         }
     }
 
-    public String logout(){
+    public String logout() {
         HttpSession session = SessionBean.getSession();
         session.invalidate();
+        this.currentUser = null;
         return "login";
     }
 }

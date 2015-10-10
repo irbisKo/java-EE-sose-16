@@ -14,5 +14,6 @@
         <mapping class="com.alpha.models.User"></mapping>
         <mapping class="com.alpha.models.Poll"></mapping>
         <mapping class="com.alpha.models.Role"></mapping>
+        <mapping class="com.alpha.models.Token"></mapping>
     </session-factory>
 </hibernate-configuration>
