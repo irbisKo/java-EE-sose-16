@@ -3,29 +3,32 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by arturschens on 04.10.15.
- */
 @Entity
-@Table(name = "roles")
+@Table(name = Role.TABLE_NAME)
 public class Role implements IModel {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String TABLE_NAME = "polls";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_CREATED_AT = "created_at";
+    public static final String COLUMN_UPDATED_AT = "updated_at";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = Role.COLUMN_ID)
     private Long id;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = Role.COLUMN_NAME, unique = true, nullable = false)
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false)
+    @Column(name = Role.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = Role.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
     public Long getId() {
