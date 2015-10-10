@@ -3,6 +3,8 @@ package com.alpha.dao;
 import com.alpha.models.Token;
 import org.hibernate.criterion.Restrictions;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -47,7 +49,7 @@ public class TokenDao extends BaseDao<Token> implements ITokenDao {
         Token token = new Token();
         String tokenUid = "";
         do {
-            tokenUid = UUID.randomUUID().toString();
+            tokenUid = new BigInteger(130, new SecureRandom()).toString(32).toUpperCase().substring(0, 10);
         } while(tokenExists(tokenUid));
         token.setToken(tokenUid);
         token.setCreatedAt(new Date());
