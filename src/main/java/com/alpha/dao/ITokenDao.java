@@ -9,5 +9,4 @@ public interface ITokenDao{
 
     public Token findByToken(String token);
 
-    public void generateToken();
 }
