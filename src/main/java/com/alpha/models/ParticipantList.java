@@ -1,40 +1,22 @@
 package com.alpha.models;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "participant_lists")
-public class ParticipantList implements IModel {
+@Table(name = ParticipantList.TABLE_NAME)
+public class ParticipantList extends Model {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    public static final String TABLE_NAME = "participant_lists";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_USER_ID = "user_id";
 
-    @Column(name = "name", nullable = false)
+    @Column(name = ParticipantList.COLUMN_NAME, nullable = false)
     private String name;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = ParticipantList.COLUMN_USER_ID, nullable = false)
     private Long user_id;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false)
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -50,21 +32,5 @@ public class ParticipantList implements IModel {
 
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

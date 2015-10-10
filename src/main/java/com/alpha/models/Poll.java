@@ -3,18 +3,10 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by arturschens on 04.10.15.
- */
 @Entity
 @Table(name = "polls")
-public class Poll implements IModel {
+public class Poll extends Model {
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
 
     @Column(name = "title", unique = true, nullable = false)
     private String title;
@@ -29,38 +21,6 @@ public class Poll implements IModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_at", nullable = false)
     private Date endAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false)
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public Date getEndAt() {
         return endAt;
