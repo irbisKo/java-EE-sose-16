@@ -1,6 +1,7 @@
 package com.alpha.service;
 
 import com.alpha.dao.TokenDao;
+import com.alpha.models.Poll;
 import com.alpha.models.Token;
 
 import java.util.Date;
@@ -15,6 +16,13 @@ public class TokenService {
 
     public TokenService() {
         tokenDao = new TokenDao();
+    }
+
+    public Token findById(Long id) {
+        tokenDao.openCurrentSession();
+        Token token = tokenDao.findById(id);
+        tokenDao.closeCurrentSession();
+        return token;
     }
 
     public void newToken() {

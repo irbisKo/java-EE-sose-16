@@ -1,5 +1,6 @@
 package com.alpha.dao;
 
+import com.alpha.models.Poll;
 import com.alpha.models.Token;
 import org.hibernate.criterion.Restrictions;
 

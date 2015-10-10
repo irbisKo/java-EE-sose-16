@@ -21,7 +21,8 @@ public class TokenBean {
     }
 
     public void newToken() {
-        new TokenService().newToken();
+        TokenService tokenService = new TokenService();
+        tokenService.newToken();
     }
 
 }
