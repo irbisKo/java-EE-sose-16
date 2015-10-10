@@ -9,6 +9,7 @@ public class ParticipantList implements IModel {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_USER = "user";
     public static final String TABLE_NAME = "participant_lists";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CREATED_AT = "created_at";
@@ -21,6 +22,12 @@ public class ParticipantList implements IModel {
     @Column(name = ParticipantList.COLUMN_ID)
     private Long id;
 
+    @Column(name = ParticipantList.COLUMN_NAME, nullable = false)
+    private String name;
+
+    @Column(name = ParticipantList.COLUMN_USER_ID, nullable = false)
+    private Long user_id;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = ParticipantList.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
@@ -29,12 +36,9 @@ public class ParticipantList implements IModel {
     @Column(name = ParticipantList.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-
-    @Column(name = ParticipantList.COLUMN_NAME, nullable = false)
-    private String name;
-
-    @Column(name = ParticipantList.COLUMN_USER_ID, nullable = false)
-    private Long user_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = ParticipantList.COLUMN_USER_ID)
+    private User user;
 
     public String getName() {
         return name;
@@ -74,5 +78,13 @@ public class ParticipantList implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
