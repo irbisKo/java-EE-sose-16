@@ -1,4 +1,4 @@
-import com.alpha.models.IModel;
+package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
