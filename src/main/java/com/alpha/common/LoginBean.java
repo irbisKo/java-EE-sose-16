@@ -4,11 +4,13 @@ import com.alpha.dao.login.LoginDao;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
 import com.alpha.util.Application;
+import com.alpha.util.EmailSender;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
