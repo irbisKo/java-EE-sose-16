@@ -1,7 +1,7 @@
-CREATE TABLE tokens (
+CREATE TABLE users_roles (
   id                 INT          NOT NULL AUTO_INCREMENT,
-  token              VARCHAR(255) NOT NULL UNIQUE,
-  poll_id            INT,
+  user_id            INT NOT NULL,
+  role_id            INT NOT NULL,
   updated_at         DATETIME,
   created_at         DATETIME,
   PRIMARY KEY (id)

@@ -2,6 +2,9 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = Role.TABLE_NAME)
@@ -30,6 +33,9 @@ public class Role implements IModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = Role.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    public Set<User> users = new HashSet<User>();
 
     public Long getId() {
         return id;
@@ -61,5 +67,13 @@ public class Role implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
