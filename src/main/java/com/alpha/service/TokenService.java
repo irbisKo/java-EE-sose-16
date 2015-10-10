@@ -3,10 +3,6 @@ package com.alpha.service;
 import com.alpha.dao.TokenDao;
 import com.alpha.models.Token;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 /**
  * Created by arturschens on 10.10.15.
  */
@@ -15,6 +11,13 @@ public class TokenService implements IBaseService<Token> {
 
     public TokenService() {
         tokenDao = new TokenDao();
+    }
+
+    public Token findById(Long id) {
+        tokenDao.openCurrentSession();
+        Token token = tokenDao.findById(id);
+        tokenDao.closeCurrentSession();
+        return token;
     }
 
     public void newToken() {

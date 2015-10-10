@@ -3,6 +3,7 @@ package com.alpha.common;
 import com.alpha.dao.login.LoginDao;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
+import com.alpha.util.MessageSender;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -59,7 +60,8 @@ public class LoginBean implements Serializable {
             session.setAttribute("email", email);
             return "hello";
         } else {
-            FacesContext.getCurrentInstance().addMessage("password", new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect email and password", "Please enter correct email and password"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("VALIDATION", "Ungültige Email oder Passwort"));
             return "login";
         }
     }

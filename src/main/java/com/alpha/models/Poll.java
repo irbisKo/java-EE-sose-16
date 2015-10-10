@@ -48,6 +48,9 @@ public class Poll implements IModel {
     @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.EAGER)
     private List<Item> items;
 
+    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.EAGER)
+    private List<Token> tokens;
+
     public Date getEndAt() {
         return endAt;
     }
@@ -101,6 +104,6 @@ public class Poll implements IModel {
     }
 
     public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+
     }
 }

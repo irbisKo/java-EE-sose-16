@@ -9,37 +9,37 @@ import java.util.Date;
  * Created by arturschens on 10.10.15.
  */
 @Entity
-@Table(name = "tokens")
+@Table(name = Token.TABLE_NAME)
 public class Token implements IModel {
 
     private static final long serialVersionUID = 1L;
+    public static final String TABLE_NAME = "tokens";
+    public static final String FIELD_NAME = "token";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_TOKEN = "token";
+    public static final String COLUMN_CREATED_AT = "created_at";
+    public static final String COLUMN_UPDATED_AT = "updated_at";
+    public static final String COLUMN_POLL_ID = "poll_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = Token.COLUMN_ID)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false)
+    @Column(name = Token.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = Token.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @Column(name = "token", unique = true, nullable = false)
+    @Column(name = Token.COLUMN_TOKEN, unique = true, nullable = false)
     private String token;
 
-    @Column(name = "poll_id")
-    private Integer pollId;
-
-    public int getPollId() {
-        return pollId;
-    }
-
-    public void setPollId(int pollId) {
-        this.pollId = pollId;
-    }
+    @ManyToOne
+    @JoinColumn(name = Token.COLUMN_POLL_ID)
+    private Poll poll;
 
     public Long getId() {
         return id;
@@ -55,6 +55,14 @@ public class Token implements IModel {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Poll getPoll() {
+        return poll;
+    }
+
+    public void setPoll(Poll poll) {
+        this.poll = poll;
     }
 
     public Date getCreatedAt() {
