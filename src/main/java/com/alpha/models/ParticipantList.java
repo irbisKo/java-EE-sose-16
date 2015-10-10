@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "polls")
-public class ParticpantList implements IModel {
+@Table(name = "participant_lists")
+public class ParticipantList implements IModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,11 +29,11 @@ public class ParticpantList implements IModel {
     private Date updatedAt;
 
     public Long getId() {
-        return null;
+        return id;
     }
 
     public void setId(Long id) {
-
+        this.id = id;
     }
 
     public String getName() {
