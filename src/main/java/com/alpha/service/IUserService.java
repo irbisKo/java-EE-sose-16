@@ -7,5 +7,5 @@ import com.alpha.models.User;
  */
 public interface IUserService {
 
-    User findByEmailAndPassword(String email, String password);
+    User findByEmail(String email);
 }

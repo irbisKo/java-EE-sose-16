@@ -34,11 +34,11 @@ public class ParticipantList implements IModel {
     @Column(name = ParticipantList.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = ParticipantList.COLUMN_USER_ID)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = ParticipantListing.TABLE_NAME,
             joinColumns =
             @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_LIST_ID),

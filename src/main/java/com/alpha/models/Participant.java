@@ -30,7 +30,7 @@ public class Participant implements IModel {
     @Column(name = Participant.COLUMN_EMAIL, unique = true, nullable = false)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = ParticipantListing.TABLE_NAME,
             joinColumns =
             @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_ID),

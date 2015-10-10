@@ -3,6 +3,8 @@ package com.alpha.service;
 import com.alpha.dao.TokenDao;
 import com.alpha.models.Token;
 
+import java.util.List;
+
 /**
  * Created by arturschens on 10.10.15.
  */
@@ -36,12 +38,6 @@ public class TokenService implements IBaseService<Token> {
         tokenDao.closeCurrentSessionwithTransaction();
     }
 
-    public Token findById(Long id) {
-        tokenDao.openCurrentSession();
-        Token token = tokenDao.findById(id);
-        tokenDao.closeCurrentSession();
-        return token;
-    }
 
     public void delete(Long id) {
         tokenDao.openCurrentSessionwithTransaction();
