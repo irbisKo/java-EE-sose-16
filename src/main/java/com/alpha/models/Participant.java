@@ -2,6 +2,7 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = Participant.TABLE_NAME)
@@ -11,6 +12,7 @@ public class Participant implements IModel {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CREATED_AT = "created_at";
     public static final String COLUMN_UPDATED_AT = "updated_at";
+    public static final String COLUMN_EMAIL = "email";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,8 +27,16 @@ public class Participant implements IModel {
     @Column(name = Participant.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
     
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = Participant.COLUMN_EMAIL, unique = true, nullable = false)
     private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = ParticipantListing.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_LIST_ID))
+    private List<ParticipantList> participantLists;
 
     public String getEmail() {
         return email;
@@ -58,5 +68,13 @@ public class Participant implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<ParticipantList> getParticipantLists() {
+        return participantLists;
+    }
+
+    public void setParticipantLists(List<ParticipantList> participantLists) {
+        this.participantLists = participantLists;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by erwinschens on 27.04.15.
  */
-public class UserService {
+public class UserService implements IBaseService<User>,IUserService {
 
     private static UserDao userDao;
 

@@ -22,7 +22,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     }
 
     public User findByEmail(String email) {
-        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
+        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).uniqueResult();
     }
 
     public void delete(User entity) {

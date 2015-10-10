@@ -2,6 +2,7 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = ParticipantList.TABLE_NAME)
@@ -36,6 +37,14 @@ public class ParticipantList implements IModel {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = ParticipantList.COLUMN_USER_ID)
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = ParticipantListing.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_LIST_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_ID))
+    private List<Participant> participants;
 
     public String getName() {
         return name;
@@ -75,5 +84,13 @@ public class ParticipantList implements IModel {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
     }
 }
