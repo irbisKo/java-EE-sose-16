@@ -39,7 +39,7 @@ public class User implements IModel {
     @Column(name = User.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
     private List<ParticipantList> participantLists;
 
     public Long getId() {
