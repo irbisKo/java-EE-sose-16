@@ -1,12 +1,8 @@
 package com.alpha.util;
 
-import com.alpha.common.SessionBean;
-
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Properties;
 

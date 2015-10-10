@@ -15,6 +15,7 @@ public class User implements IModel {
     public static final String COLUMN_PASSWORD_ENCRYPTED = "password_encrypted";
     public static final String COLUMN_CREATED_AT = "created_at";
     public static final String COLUMN_UPDATED_AT = "updated_at";
+    public static final String COLUMN_SALT = "salt";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,8 +25,11 @@ public class User implements IModel {
     @Column(name = User.COLUMN_EMAIL, unique = true, nullable = false)
     private String email;
 
-    @Column(name = User.COLUMN_PASSWORD_ENCRYPTED, unique = true, nullable = false)
+    @Column(name = User.COLUMN_PASSWORD_ENCRYPTED, nullable = false)
     private String passwordEncrypted;
+
+    @Column(name = User.COLUMN_SALT, nullable = false)
+    private String salt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = User.COLUMN_CREATED_AT, nullable = false)
@@ -76,6 +80,14 @@ public class User implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public List<ParticipantList> getParticipantLists() {

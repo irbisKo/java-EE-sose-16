@@ -3,7 +3,7 @@ package com.alpha.common;
 import com.alpha.dao.login.LoginDao;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
-import com.alpha.util.MessageSender;
+import com.alpha.util.PasswordEncryption;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +11,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * Created by erwinschens on 10.10.15.
@@ -52,10 +54,10 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    public String validateEmailPassword() {
+    public String validateEmailPassword() throws NoSuchAlgorithmException, InvalidKeySpecException {
         boolean valid = LoginDao.validate(email, password);
         if (valid) {
-            this.currentUser = new UserService().findByEmailAndPassword(email, password);
+            this.currentUser = new UserService().findByEmail(email);
             HttpSession session = SessionBean.getSession();
             session.setAttribute("email", email);
             return "hello";

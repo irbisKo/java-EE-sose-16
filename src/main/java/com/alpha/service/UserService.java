@@ -35,9 +35,9 @@ public class UserService {
         return user;
     }
 
-    public User findByEmailAndPassword(String email, String password) {
+    public User findByEmail(String email) {
         userDao.openCurrentSession();
-        User user = userDao.findByEmailAndPassword(email, password);
+        User user = userDao.findByEmail(email);
         userDao.closeCurrentSession();
         return user;
     }
