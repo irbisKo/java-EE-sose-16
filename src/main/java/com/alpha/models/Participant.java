@@ -1,28 +1,17 @@
 package com.alpha.models;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-public class Participant implements IModel {
+@Entity
+@Table(name = Participant.TABLE_NAME)
+public class Participant extends Model {
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    public static final String TABLE_NAME = "participants";
 
     @Column(name = "email", unique = true, nullable = false)
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
