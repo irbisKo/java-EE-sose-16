@@ -2,7 +2,6 @@ package com.alpha.dao;
 
 import com.alpha.models.Participant;
 import com.alpha.models.ParticipantList;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 

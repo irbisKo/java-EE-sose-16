@@ -58,4 +58,17 @@ public abstract class BaseDao<T extends IModel> implements IBaseDao<T> {
     public void setCurrentTransaction(Transaction currentTransaction) {
         this.currentTransaction = currentTransaction;
     }
+
+    /**
+     * Check long value that it can be identifier.
+     *
+     * @param id Long value for check
+     * @throws IllegalArgumentException If id not valid
+     * @noinspection NonBooleanMethodNameMayNotStartWithQuestion
+     */
+    protected static void checkId(final Long id) throws IllegalArgumentException {
+        if (id == null || id < 1) {
+            throw new IllegalArgumentException("Call of the DAO method with illegal entity identifier: " + id);
+        }
+    }
 }

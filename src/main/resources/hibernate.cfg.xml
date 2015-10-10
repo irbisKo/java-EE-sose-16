@@ -17,5 +17,8 @@
         <mapping class="com.alpha.models.Token"></mapping>
         <mapping class="com.alpha.models.Participant"></mapping>
         <mapping class="com.alpha.models.ParticipantList"></mapping>
+        <mapping class="com.alpha.models.ParticipantListing"></mapping>
+        <mapping class="com.alpha.models.Item"></mapping>
+        <mapping class="com.alpha.models.Option"></mapping>
     </session-factory>
 </hibernate-configuration>

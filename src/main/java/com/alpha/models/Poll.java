@@ -2,6 +2,7 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = Poll.TABLE_NAME)
@@ -43,6 +44,9 @@ public class Poll implements IModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = Poll.COLUMN_END_AT, nullable = false)
     private Date endAt;
+
+    @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.EAGER)
+    private List<Item> items;
 
     public Date getEndAt() {
         return endAt;
@@ -97,6 +101,6 @@ public class Poll implements IModel {
     }
 
     public void setUpdatedAt(Date updatedAt) {
-
+        this.updatedAt = updatedAt;
     }
 }
