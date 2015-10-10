@@ -1,8 +1,10 @@
 package com.alpha.dao;
 
+import com.alpha.models.Role;
 import com.alpha.models.User;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,12 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 
     public User findByEmail(String email) {
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).uniqueResult();
+    }
+
+    public List<Role> findRoles(User user) {
+        List<Role> roles = new ArrayList<Role>();
+        roles.addAll(user.getRoles());
+        return roles;
     }
 
     public void delete(User entity) {

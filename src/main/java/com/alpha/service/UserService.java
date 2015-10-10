@@ -1,6 +1,7 @@
 package com.alpha.service;
 
 import com.alpha.dao.UserDao;
+import com.alpha.models.Role;
 import com.alpha.models.User;
 
 import java.util.List;
@@ -60,6 +61,14 @@ public class UserService implements IBaseService<User>,IUserService {
         userDao.openCurrentSessionwithTransaction();
         userDao.deleteAll();
         userDao.closeCurrentSessionwithTransaction();
+    }
+
+    public List<Role> getRoles(Long userId) {
+        userDao.openCurrentSession();
+        User user = userDao.findById(userId);
+        List<Role> roles = userDao.findRoles(user);
+        userDao.closeCurrentSession();
+        return roles;
     }
 
     public UserDao getUserDao() {

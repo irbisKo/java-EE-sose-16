@@ -3,6 +3,7 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = ParticipantList.TABLE_NAME)
@@ -44,7 +45,7 @@ public class ParticipantList implements IModel {
             @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_LIST_ID),
             inverseJoinColumns =
             @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_ID))
-    private List<Participant> participants;
+    private Set<Participant> participants;
 
     public String getName() {
         return name;
@@ -86,11 +87,11 @@ public class ParticipantList implements IModel {
         this.user = user;
     }
 
-    public List<Participant> getParticipants() {
+    public Set<Participant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<Participant> participants) {
+    public void setParticipants(Set<Participant> participants) {
         this.participants = participants;
     }
 }

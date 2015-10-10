@@ -3,6 +3,7 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = User.TABLE_NAME)
@@ -41,6 +42,14 @@ public class User implements IModel {
 
     @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
     private List<ParticipantList> participantLists;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = UserRoles.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = UserRoles.COLUMN_USER_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = UserRoles.COLUMN_ROLE_ID))
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -84,6 +93,14 @@ public class User implements IModel {
 
     public String getSalt() {
         return salt;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public void setSalt(String salt) {

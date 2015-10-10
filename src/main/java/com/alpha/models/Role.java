@@ -2,8 +2,6 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,8 +32,13 @@ public class Role implements IModel {
     @Column(name = Role.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    public Set<User> users = new HashSet<User>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = UserRoles.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = UserRoles.COLUMN_ROLE_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = UserRoles.COLUMN_USER_ID))
+    private Set<User> users;
 
     public Long getId() {
         return id;

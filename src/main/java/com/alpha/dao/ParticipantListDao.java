@@ -3,6 +3,7 @@ package com.alpha.dao;
 import com.alpha.models.Participant;
 import com.alpha.models.ParticipantList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParticipantListDao extends BaseDao<ParticipantList> implements IParticipantListDao {
@@ -35,6 +36,8 @@ public class ParticipantListDao extends BaseDao<ParticipantList> implements IPar
     }
 
     public List<Participant> findParticipants(ParticipantList participantList) {
-        return (List<Participant>) getCurrentSession().createCriteria(Participant.class).list();
+        List<Participant> participants = new ArrayList<Participant>();
+        participants.addAll(participantList.getParticipants());
+        return participants;
     }
 }

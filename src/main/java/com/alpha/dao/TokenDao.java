@@ -58,12 +58,8 @@ public class TokenDao extends BaseDao<Token> implements ITokenDao {
 
     private boolean tokenExists(String tokenText) {
         boolean tokenFound = false;
-        List<Token> tokens = findAll();
-        for (Token token : tokens) {
-            if (token.getToken().equals(tokenText)) {
-                tokenFound = true;
-                break;
-            }
+        if (findByToken(tokenText) != null) {
+            tokenFound = true;
         }
         return tokenFound;
     }
