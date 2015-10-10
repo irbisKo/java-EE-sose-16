@@ -10,17 +10,20 @@
             <h:form styleClass="form-horizontal">
                 <b:inputText value="#{helloBean.name}" placeholder="Such Welcome, Much wow, So Business">
                     <f:facet name="prepend">
-                        <h:outputText value="Name" />
+                        <h:outputText value="Name"/>
                     </f:facet>
                     <f:facet name="append">
-                        <b:commandButton value="Welcome Me" look="primary" action="welcome" />
+                        <b:commandButton value="Welcome Me" look="primary" action="welcome"/>
                     </f:facet>
                 </b:inputText>
             </h:form>
         </b:jumbotron>
-        <h2>Test</h2>
+
+        <h:form>
+            <h2>Welcome #{loginBean.email}</h2>
+            <h:commandLink action="#{loginBean.logout}" value="Logout"></h:commandLink>
+        </h:form>
+
+
     </ui:define>
 </ui:composition>
-
-
-

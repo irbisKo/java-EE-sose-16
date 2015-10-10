@@ -35,6 +35,13 @@ public class UserService {
         return user;
     }
 
+    public User findByEmailAndPassword(String email, String password) {
+        userDao.openCurrentSession();
+        User user = userDao.findByEmailAndPassword(email, password);
+        userDao.closeCurrentSession();
+        return user;
+    }
+
     public void delete(Long id) {
         userDao.openCurrentSessionwithTransaction();
         User book = userDao.findById(id);

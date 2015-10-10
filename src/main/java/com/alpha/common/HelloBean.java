@@ -18,26 +18,10 @@ public class HelloBean implements Serializable {
     private String name;
 
     public String getName() {
-        examplePersistCall();
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void examplePersistCall() {
-        Session session = new Configuration().configure().buildSessionFactory().openSession();
-
-        session.beginTransaction();
-        User user = new User();
-        user.setEmail("test@web.de");
-        user.setPasswordEncrypted("test1234");
-        user.setCreatedAt(new Date());
-        user.setUpdatedAt(new Date());
-
-        session.save(user);
-        session.getTransaction().commit();
-        System.out.println("Great! User was saved");
     }
 }
