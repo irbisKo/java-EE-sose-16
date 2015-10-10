@@ -25,9 +25,6 @@ public class ParticipantList implements IModel {
     @Column(name = ParticipantList.COLUMN_NAME, nullable = false)
     private String name;
 
-    @Column(name = ParticipantList.COLUMN_USER_ID, nullable = false)
-    private Long user_id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = ParticipantList.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
@@ -46,14 +43,6 @@ public class ParticipantList implements IModel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
     }
 
     public Long getId() {
