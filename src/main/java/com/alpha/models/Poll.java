@@ -2,6 +2,7 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = Poll.TABLE_NAME)
@@ -43,6 +44,9 @@ public class Poll implements IModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = Poll.COLUMN_END_AT, nullable = false)
     private Date endAt;
+
+    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.EAGER)
+    private List<Token> tokens;
 
     public Date getEndAt() {
         return endAt;
@@ -98,5 +102,13 @@ public class Poll implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
 
+    }
+
+    public List<Token> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(List<Token> tokens) {
+        this.tokens = tokens;
     }
 }
