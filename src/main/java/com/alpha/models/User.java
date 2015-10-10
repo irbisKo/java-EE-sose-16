@@ -2,6 +2,7 @@ package com.alpha.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = User.TABLE_NAME)
@@ -33,6 +34,9 @@ public class User implements IModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = User.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
+
+    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.EAGER)
+    private List<ParticipantList> participantLists;
 
     public Long getId() {
         return id;
@@ -72,5 +76,13 @@ public class User implements IModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<ParticipantList> getParticipantLists() {
+        return participantLists;
+    }
+
+    public void setParticipantLists(List<ParticipantList> participantLists) {
+        this.participantLists = participantLists;
     }
 }
