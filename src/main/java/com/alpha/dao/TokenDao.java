@@ -1,6 +1,5 @@
 package com.alpha.dao;
 
-import com.alpha.models.Poll;
 import com.alpha.models.Token;
 import org.hibernate.criterion.Restrictions;
 
@@ -8,7 +7,6 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by arturschens on 10.10.15.
