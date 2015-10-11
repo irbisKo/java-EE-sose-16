@@ -27,12 +27,6 @@ public class UserDao extends BaseDao<User> implements IUserDao {
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).uniqueResult();
     }
 
-    public List<Role> findRoles(User user) {
-        List<Role> roles = new ArrayList<Role>();
-        roles.addAll(user.getRoles());
-        return roles;
-    }
-
     public void delete(User entity) {
         getCurrentSession().delete(entity);
     }
@@ -46,5 +40,11 @@ public class UserDao extends BaseDao<User> implements IUserDao {
         for (User u : users) {
             delete(u);
         }
+    }
+
+    public List<Role> findRoles(User user) {
+        List<Role> roles = new ArrayList<Role>();
+        roles.addAll(user.getRoles());
+        return roles;
     }
 }

@@ -25,12 +25,11 @@ public class TokenBean {
         //  tokenService.newToken();
 
 
-
         UserService us = new UserService();
-        List<Role> roles = us.getRoles(8L);
+        List<Role> roles = us.getRoles(1L);
 
         for(Role r : roles) {
-            System.out.println(r.getId());
+            System.out.println(r.getRoleName());
         }
     }
 

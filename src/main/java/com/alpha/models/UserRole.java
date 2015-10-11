@@ -6,12 +6,13 @@ import java.util.Date;
 /**
  * Created by arturschens on 10.10.15.
  */
-
 @Entity
-@Table(name = UserRoles.TABLE_NAME)
-public class UserRoles implements IModel {
+@Table(name = UserRole.TABLE_NAME)
+public class UserRole implements IModel{
 
-    public static final String TABLE_NAME = "user_roles";
+    private static final long serialVersionUID = 1L;
+
+    public static final String TABLE_NAME = "user_role";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CREATED_AT = "created_at";
     public static final String COLUMN_UPDATED_AT = "updated_at";
@@ -20,27 +21,26 @@ public class UserRoles implements IModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = UserRoles.COLUMN_ID)
+    @Column(name = UserRole.COLUMN_ID)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = UserRoles.COLUMN_CREATED_AT, nullable = false)
+    @Column(name = UserRole.COLUMN_CREATED_AT, nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = UserRoles.COLUMN_UPDATED_AT, nullable = false)
+    @Column(name = UserRole.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-
     @ManyToOne
-    @JoinColumn(name = UserRoles.COLUMN_USER_ID, nullable = false)
+    @JoinColumn(name = UserRole.COLUMN_USER_ID, nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = UserRoles.COLUMN_ROLE_ID, nullable = false)
+    @JoinColumn(name = UserRole.COLUMN_ROLE_ID, nullable = false)
     private Role role;
 
-    public UserRoles(User user, Role role) {
+    public UserRole(User user, Role role) {
         this.user = user;
         this.role = role;
     }
@@ -69,14 +69,6 @@ public class UserRoles implements IModel {
         this.updatedAt = updatedAt;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -85,4 +77,11 @@ public class UserRoles implements IModel {
         this.role = role;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -43,12 +43,13 @@ public class User implements IModel {
     @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
     private List<ParticipantList> participantLists;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = UserRoles.TABLE_NAME,
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = UserRole.TABLE_NAME,
             joinColumns =
-            @JoinColumn(name = UserRoles.COLUMN_USER_ID),
+            @JoinColumn(name = UserRole.COLUMN_USER_ID),
             inverseJoinColumns =
-            @JoinColumn(name = UserRoles.COLUMN_ROLE_ID))
+            @JoinColumn(name = UserRole.COLUMN_ROLE_ID))
     private Set<Role> roles;
 
     public Long getId() {
@@ -102,6 +103,7 @@ public class User implements IModel {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 
     public void setSalt(String salt) {
         this.salt = salt;
