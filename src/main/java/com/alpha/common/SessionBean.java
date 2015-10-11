@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
  * Created by erwinschens on 10.10.15.
  */
 public class SessionBean {
+    public SessionBean() {
+    }
+
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     }
