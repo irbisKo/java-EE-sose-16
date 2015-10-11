@@ -18,5 +18,4 @@ public class RoleBean {
         UserService us = new UserService();
         return us.getRoles(userId);
     }
-
 }

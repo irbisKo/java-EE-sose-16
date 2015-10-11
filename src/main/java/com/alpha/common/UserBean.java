@@ -1,5 +1,6 @@
 package com.alpha.common;
 
+import com.alpha.models.Role;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
 
@@ -14,9 +15,24 @@ import java.util.List;
 @SessionScoped
 public class UserBean {
 
+    private Long userId;
+
     public List<User> getUsers() {
         UserService us = new UserService();
         return us.findAll();
+    }
+
+    public boolean hasRole(Long userId, String roleName) {
+        boolean roleFound = false;
+        UserService us = new UserService();
+        List<Role> roles = us.getRoles(userId);
+        for (Role r : roles) {
+            if (r.getRoleName().equals(roleName)) {
+                roleFound = true;
+                break;
+            }
+        }
+        return roleFound;
     }
 
 }

@@ -7,31 +7,35 @@
     <ui:define name="content">
         <b:container>
             <b:row>
-                <h:dataTable styleClass="table table-striped" value="#{userBean.users}" var="user">
-                    <h:column>
-                        <f:facet name="header">
-                            ID
-                        </f:facet>
-                        <h:outputText value="#{user.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            E-Mail
-                        </f:facet>
-                        <h:outputText value="#{user.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Rollen
-                        </f:facet>
-                        <b:label rendered="#{empty roleBean.getRoles(user.id)}" text="Keine Rollen verfügbar" severity="warning"/>
-                        <ui:repeat value="#{roleBean.getRoles(user.id)}" var="role">
+                <b:panel title="Benutzer" collapsible="false">
+                    <h:dataTable styleClass="table table-striped" value="#{userBean.users}" var="user">
+                        <h:column>
+                            <f:facet name="header">
+                                E-Mail
+                            </f:facet>
+                            <h:outputText value="#{user.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Rollen
+                            </f:facet>
+                            <b:label rendered="#{empty roleBean.getRoles(user.id)}" text="Keine Rollen verfügbar"
+                                     severity="warning"/>
+                            <ui:repeat value="#{roleBean.getRoles(user.id)}" var="role">
                             <span class="role-label">
                                 <b:label text="#{role.roleName}" severity="info"/>
                             </span>
-                        </ui:repeat>
-                    </h:column>
-                </h:dataTable>
+                            </ui:repeat>
+                        </h:column>
+                        <h:column>
+                            <b:buttonGroup rendered="#{userBean.hasRole(user.id, 'Administrator')}">
+                                <b:button look="info" icon="pencil" value="" tooltip="Bearbeiten"
+                                          tooltipPosition="top"/>
+                                <b:button look="danger" icon="remove" value="" tooltip="Löschen" tooltipPosition="top"/>
+                            </b:buttonGroup>
+                        </h:column>
+                    </h:dataTable>
+                </b:panel>
             </b:row>
         </b:container>
     </ui:define>
