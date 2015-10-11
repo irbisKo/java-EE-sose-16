@@ -1,5 +1,7 @@
 package com.alpha.dao;
 
+import com.alpha.models.Role;
+import com.alpha.models.User;
 import com.alpha.models.UserRole;
 import org.hibernate.criterion.Restrictions;
 
@@ -37,7 +39,7 @@ public class UserRoleDao extends BaseDao<UserRole> implements IUserRoleDao {
         }
     }
 
-    public UserRole findByUserIdandRoleId(Long userId, Long roleId) {
-        return (UserRole) getCurrentSession().createCriteria(UserRole.class).add(Restrictions.and(Restrictions.eq(UserRole.COLUMN_USER_ID, userId), Restrictions.eq(UserRole.COLUMN_ROLE_ID, roleId))).uniqueResult();
+    public UserRole findByUserandRole(User user, Role role) {
+        return (UserRole) getCurrentSession().createCriteria(UserRole.class).add(Restrictions.and(Restrictions.eq(UserRole.FIELD_USER, user), Restrictions.eq(UserRole.FIELD_ROLE, role))).uniqueResult();
     }
 }

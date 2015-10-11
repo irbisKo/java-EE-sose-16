@@ -1,6 +1,7 @@
 package com.alpha.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 public class User implements IModel {
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_ROLES = "roles";
     public static final String TABLE_NAME = "users";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_EMAIL = "email";
@@ -98,6 +100,10 @@ public class User implements IModel {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public ArrayList<Role> getRolesArray() {
+        return new ArrayList<Role>(getRoles());
     }
 
     public void setRoles(Set<Role> roles) {

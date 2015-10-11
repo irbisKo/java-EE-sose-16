@@ -64,7 +64,7 @@ public class RoleService implements IRoleService {
 
     public boolean userHasRole(User user, Role role) {
         userRoleDao.openCurrentSessionwithTransaction();
-        UserRole userRole = userRoleDao.findByUserIdandRoleId(user.getId(), role.getId());
+        UserRole userRole = userRoleDao.findByUserandRole(user, role);
         userRoleDao.closeCurrentSessionwithTransaction();
         return !(userRole == null);
     }

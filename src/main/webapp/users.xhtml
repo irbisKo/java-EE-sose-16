@@ -19,16 +19,16 @@
                             <f:facet name="header">
                                 Rollen
                             </f:facet>
-                            <b:label rendered="#{empty roleBean.getRoles(user.id)}" text="Keine Rollen verfügbar"
+                            <b:label rendered="#{empty user.roles}" text="Keine Rollen verfügbar"
                                      severity="warning"/>
-                            <ui:repeat value="#{roleBean.getRoles(user.id)}" var="role">
+                            <ui:repeat value="#{user.getRolesArray()}" var="role">
                             <span class="role-label">
                                 <b:label text="#{role.roleName}" severity="info"/>
                             </span>
                             </ui:repeat>
                         </h:column>
                         <h:column>
-                            <b:buttonGroup rendered="#{userBean.hasRole(user.id, 'Administrator')}">
+                            <b:buttonGroup rendered="#{userBean.isAdmin(user)}">
                                 <b:button look="info" icon="pencil" value="" tooltip="Bearbeiten"
                                           tooltipPosition="top"/>
                                 <b:button look="danger" icon="remove" value="" tooltip="Löschen" tooltipPosition="top"/>

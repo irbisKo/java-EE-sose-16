@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by arturschens on 10.10.15.
  */
-public class TokenService implements IBaseService<Token> {
+public class TokenService implements ITokenService  {
     private static TokenDao tokenDao;
 
     public TokenService() {

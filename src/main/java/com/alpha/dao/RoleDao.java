@@ -1,12 +1,13 @@
 package com.alpha.dao;
 
 import com.alpha.models.Role;
+import com.alpha.models.User;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Set;
 
-/**
- * Created by patrick on 11/10/15.
- */
 public class RoleDao extends BaseDao<Role> implements IRoleDao {
 
     public void persist(Role entity) {
@@ -35,5 +36,5 @@ public class RoleDao extends BaseDao<Role> implements IRoleDao {
             delete(r);
         }
     }
-    
+
 }

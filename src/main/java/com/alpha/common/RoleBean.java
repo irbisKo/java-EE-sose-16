@@ -1,21 +1,21 @@
 package com.alpha.common;
 
-import com.alpha.models.Role;
+import com.alpha.service.IUserService;
 import com.alpha.service.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.List;
+import javax.inject.Inject;
 
-/**
- * Created by arturschens on 10.10.15.
- */
 @ManagedBean
 @SessionScoped
 public class RoleBean {
 
-    public List<Role> getRoles(Long userId) {
-        UserService us = new UserService();
-        return us.getRoles(userId);
+    @Inject
+    private RoleHolderBean roleHolderBean;
+    private static IUserService userService;
+
+    public RoleBean() {
+        userService = new UserService();
     }
 }

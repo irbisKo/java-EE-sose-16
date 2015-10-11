@@ -8,7 +8,7 @@
         <b:container>
             <b:row>
                 <b:panel title="Polls" collapsible="false">
-                    <h:dataTable styleClass="table table-striped" value="#{pollBean.currentUserPolls}" var="user">
+                    <h:dataTable styleClass="table table-striped" value="#{pollBean.getCurrentUserPolls()}" var="user">
                         <h:column>
                             <f:facet name="header">
                                Poll Name
@@ -21,7 +21,7 @@
                             </f:facet>
                         </h:column>
                         <h:column>
-                            <b:buttonGroup rendered="#{userBean.hasRole(user.id, roleHolderBean.admin)}">
+                            <b:buttonGroup rendered="#{userBean.isAdmin(user)}">
                                 <b:button look="info" icon="pencil" value="" tooltip="Bearbeiten"
                                           tooltipPosition="top"/>
                                 <b:button look="danger" icon="remove" value="" tooltip="Löschen" tooltipPosition="top"/>

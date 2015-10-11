@@ -2,39 +2,29 @@ package com.alpha.common;
 
 import com.alpha.models.Poll;
 import com.alpha.service.IPollService;
+import com.alpha.service.IUserService;
 import com.alpha.service.PollService;
-import org.hibernate.service.spi.InjectService;
+import com.alpha.service.UserService;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
-import java.util.List;
-
-/**
- * Created by patrick on 11/10/15.
- */
+import java.io.Serializable;
+import java.util.ArrayList;
 
 @ManagedBean
 @SessionScoped
-public class PollBean {
+public class PollBean implements Serializable {
 
-    @ManagedProperty(value = "#{roleHolderBean}")
-    private RoleHolderBean roleHolderBean;
+    private static IUserService userService;
+    private static IPollService pollService;
 
-
-    public List<Poll> getCurrentUserPolls(){
-        getRoleHolderBean();
-        return null;
+    public PollBean() {
+        userService = new UserService();
+        pollService = new PollService();
     }
 
-
-    public RoleHolderBean getRoleHolderBean() {
-        return roleHolderBean;
+    public ArrayList<Poll> getCurrentUserPolls(){
+        return new ArrayList<Poll>(pollService.findByUser(SessionBean.currentUser()));
     }
 
-    public void setRoleHolderBean(RoleHolderBean roleHolderBean) {
-        this.roleHolderBean = roleHolderBean;
-    }
 }

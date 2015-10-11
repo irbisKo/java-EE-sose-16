@@ -10,6 +10,7 @@ public class Role implements IModel {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_USERS = "users";
     public static final String TABLE_NAME = "roles";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_ROLE_NAME = "role_name";

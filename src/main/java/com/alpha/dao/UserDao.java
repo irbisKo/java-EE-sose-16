@@ -2,6 +2,7 @@ package com.alpha.dao;
 
 import com.alpha.models.Role;
 import com.alpha.models.User;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -20,11 +21,11 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     }
 
     public User findById(Long id) {
-        return (User) getCurrentSession().get(User.class, id);
+        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_ID, id)).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).uniqueResult();
     }
 
     public User findByEmail(String email) {
-        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).uniqueResult();
+        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).uniqueResult();
     }
 
     public void delete(User entity) {
@@ -32,7 +33,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     }
 
     public List<User> findAll() {
-        return (List<User>) getCurrentSession().createCriteria(User.class).list();
+        return (List<User>) getCurrentSession().createCriteria(User.class).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).list();
     }
 
     public void deleteAll() {
@@ -40,11 +41,5 @@ public class UserDao extends BaseDao<User> implements IUserDao {
         for (User u : users) {
             delete(u);
         }
-    }
-
-    public List<Role> findRoles(User user) {
-        List<Role> roles = new ArrayList<Role>();
-        roles.addAll(user.getRoles());
-        return roles;
     }
 }

@@ -6,10 +6,12 @@ import com.alpha.models.ParticipantList;
 import com.alpha.models.Poll;
 import com.alpha.models.User;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
-
-public class PollService implements IBaseService<Poll>, IPollService {
+@Resource(name = "pollService")
+public class PollService implements IPollService {
     private static PollDao pollDao;
     private static ParticipantListService participantListService;
 
@@ -39,8 +41,8 @@ public class PollService implements IBaseService<Poll>, IPollService {
 
     public void delete(Long id) {
         pollDao.openCurrentSessionwithTransaction();
-        Poll participantList = pollDao.findById(id);
-        pollDao.delete(participantList);
+        Poll poll = pollDao.findById(id);
+        pollDao.delete(poll);
         pollDao.closeCurrentSessionwithTransaction();
     }
 
@@ -79,5 +81,12 @@ public class PollService implements IBaseService<Poll>, IPollService {
 
     public void removeUserFromPoll(Poll poll, User user) {
 
+    }
+
+    public Set<Poll> findByUser(User user) {
+        pollDao.openCurrentSessionwithTransaction();
+        Set<Poll> polls =  pollDao.findByUserId(user.getId());
+        pollDao.closeCurrentSessionwithTransaction();
+        return polls;
     }
 }

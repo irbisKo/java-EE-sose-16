@@ -4,15 +4,13 @@ import com.alpha.models.Role;
 import com.alpha.service.IRoleService;
 import com.alpha.service.RoleService;
 
+import javax.annotation.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
 
-/**
- * Created by patrick on 11/10/15.
- */
 @ManagedBean
 @ApplicationScoped
-public class RoleHolderBean {
+public class RoleHolderBean implements Serializable {
 
     private static IRoleService roleService;
     private Role admin;

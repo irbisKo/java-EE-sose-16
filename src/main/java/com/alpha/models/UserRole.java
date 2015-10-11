@@ -12,6 +12,8 @@ public class UserRole implements IModel{
 
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_USER = "user";
+    public static final String FIELD_ROLE = "role";
     public static final String TABLE_NAME = "user_role";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CREATED_AT = "created_at";
@@ -43,6 +45,9 @@ public class UserRole implements IModel{
     public UserRole(User user, Role role) {
         this.user = user;
         this.role = role;
+    }
+
+    public UserRole() {
     }
 
     public Long getId() {

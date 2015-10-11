@@ -1,5 +1,7 @@
 package com.alpha.dao;
 
+import com.alpha.models.Role;
+import com.alpha.models.User;
 import com.alpha.models.UserRole;
 
 /**
@@ -7,5 +9,5 @@ import com.alpha.models.UserRole;
  */
 public interface IUserRoleDao {
 
-    UserRole findByUserIdandRoleId(Long userId, Long roleId);
+    UserRole findByUserandRole(User user, Role role);
 }

@@ -1,20 +1,25 @@
 package com.alpha.service;
 
+import com.alpha.dao.RoleDao;
 import com.alpha.dao.UserDao;
 import com.alpha.models.Role;
 import com.alpha.models.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by erwinschens on 27.04.15.
  */
-public class UserService implements IBaseService<User>,IUserService {
+public class UserService implements IUserService {
 
     private static UserDao userDao;
+    private static RoleDao roleDao;
+
 
     public UserService() {
         userDao = new UserDao();
+        roleDao = new RoleDao();
     }
 
     public void persist(User user) {
@@ -62,17 +67,4 @@ public class UserService implements IBaseService<User>,IUserService {
         userDao.deleteAll();
         userDao.closeCurrentSessionwithTransaction();
     }
-
-    public List<Role> getRoles(Long userId) {
-        userDao.openCurrentSession();
-        User user = userDao.findById(userId);
-        List<Role> roles = userDao.findRoles(user);
-        userDao.closeCurrentSession();
-        return roles;
-    }
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
 }
