@@ -45,7 +45,6 @@ public class User implements IModel {
     @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
     private List<ParticipantList> participantLists;
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = UserRole.TABLE_NAME,
             joinColumns =

@@ -26,14 +26,14 @@
                     <h3>LDAP Login</h3>
                     <h:form id="loginForm2">
                         <h:panelGrid id="loginPanel2">
-                            <h:outputLabel for="email" value="Email:"/>
-                            <b:inputText id="email2" value="#{loginBean.email}">
+                            <h:outputLabel for="username" value="Uni Kennung:"/>
+                            <b:inputText id="username" value="#{ldapLoginBean.username}">
                                 <f:validateLength minimum="2"/>
                             </b:inputText>
                             <h:outputLabel for="password" value="Password:"/>
-                            <b:inputSecret id="password2" value="#{loginBean.password}" required="true"></b:inputSecret>
+                            <b:inputSecret id="password2" value="#{ldapLoginBean.password}" required="true"></b:inputSecret>
                             <h:message for="password"/>
-                            <b:commandButton action="#{loginBean.validateEmailPassword}"
+                            <b:commandButton action="#{ldapLoginBean.login}"
                                              value="Login"></b:commandButton>
                         </h:panelGrid>
                     </h:form>
