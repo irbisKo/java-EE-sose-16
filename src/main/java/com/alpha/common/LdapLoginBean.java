@@ -3,6 +3,7 @@ package com.alpha.common;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
 import com.alpha.util.LdapAuthenticator;
+import com.alpha.util.MessageSender;
 import com.alpha.util.PasswordEncryption;
 
 import javax.faces.application.FacesMessage;
@@ -53,7 +54,7 @@ public class LdapLoginBean {
             return "hello";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("VALIDATION", "Ungültige Email oder Passwort"));
+                    new FacesMessage(new MessageSender().getI18nMessage("login.fail.invalid_credentials.title"), new MessageSender().getI18nMessage("login.fail.invalid_credentials.text")));
             return "login";
         }
     }
