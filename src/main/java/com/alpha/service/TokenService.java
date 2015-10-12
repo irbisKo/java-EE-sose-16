@@ -5,17 +5,14 @@ import com.alpha.models.Token;
 
 import java.util.List;
 
-/**
- * Created by arturschens on 10.10.15.
- */
-public class TokenService implements ITokenService  {
+public class TokenService implements ITokenService {
     private static TokenDao tokenDao;
 
     public TokenService() {
         tokenDao = new TokenDao();
     }
 
-    public Token findById(Long id) {
+    public Token findById(Long id, String... fetchFields) {
         tokenDao.openCurrentSession();
         Token token = tokenDao.findById(id);
         tokenDao.closeCurrentSession();
@@ -49,7 +46,7 @@ public class TokenService implements ITokenService  {
         tokenDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<Token> findAll() {
+    public List<Token> findAll(String... fetchFields) {
         tokenDao.openCurrentSession();
         List<Token> token = tokenDao.findAll();
         tokenDao.closeCurrentSession();

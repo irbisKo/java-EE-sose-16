@@ -4,9 +4,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.util.ResourceBundle;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 public class MessageSender {
 
     /**

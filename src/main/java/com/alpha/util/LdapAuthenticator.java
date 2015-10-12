@@ -7,9 +7,6 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import java.util.Hashtable;
 
-/**
- * Created by erwinschens on 12.10.15.
- */
 public class LdapAuthenticator {
 
     public static final String BASE_DN = "ou=people,dc=uni-koblenz,dc=de";

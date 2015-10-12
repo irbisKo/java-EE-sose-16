@@ -2,6 +2,8 @@ package com.alpha.dao;
 
 import com.alpha.models.Participant;
 import com.alpha.models.ParticipantList;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +18,18 @@ public class ParticipantListDao extends BaseDao<ParticipantList> implements IPar
         getCurrentSession().update(entity);
     }
 
-    public ParticipantList findById(Long id) {
-        return (ParticipantList) getCurrentSession().get(ParticipantList.class, id);
+    public ParticipantList findById(Long id, String... fetchFields) {
+        return (ParticipantList) getRootCriteria(ParticipantList.class, fetchFields)
+                .add(Restrictions.eq(ParticipantList.COLUMN_ID, id));
     }
 
     public void delete(ParticipantList entity) {
         getCurrentSession().delete(entity);
     }
 
-    public List<ParticipantList> findAll() {
-        return (List<ParticipantList>) getCurrentSession().createCriteria(ParticipantList.class).list();
+    public List<ParticipantList> findAll(String... fetchFields) {
+        return (List<ParticipantList>) getRootCriteria(ParticipantList.class, fetchFields)
+                .list();
     }
 
     public void deleteAll() {

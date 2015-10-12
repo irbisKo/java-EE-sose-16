@@ -63,7 +63,7 @@ public class ParticipantListService implements IBaseService<ParticipantList>,IPa
         participantListDao.closeCurrentSessionwithTransaction();
     }
 
-    public ParticipantList findById(Long id) {
+    public ParticipantList findById(Long id, String... fetchFields) {
         participantListDao.openCurrentSession();
         ParticipantList participantList = participantListDao.findById(id);
         participantListDao.closeCurrentSession();
@@ -78,7 +78,7 @@ public class ParticipantListService implements IBaseService<ParticipantList>,IPa
         participantListDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<ParticipantList> findAll() {
+    public List<ParticipantList> findAll(String... fetchFields) {
         participantListDao.openCurrentSession();
         List<ParticipantList> participantList = participantListDao.findAll();
         participantListDao.closeCurrentSession();

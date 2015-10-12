@@ -29,7 +29,7 @@ public class Option implements IModel {
     @Column(name = Option.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = Option.COLUMN_ITEM_ID)
     private Item item;
 

@@ -5,9 +5,6 @@ import com.alpha.models.ParticipantListing;
 
 import java.util.List;
 
-/**
- * Created by patrick on 10/10/15.
- */
 public class ParticipantListingService implements IBaseService<ParticipantListing>, IParticipantListingService {
 
     private static ParticipantListingDao participantListingDao;
@@ -28,14 +25,13 @@ public class ParticipantListingService implements IBaseService<ParticipantListin
         participantListingDao.closeCurrentSessionwithTransaction();
     }
 
-    public ParticipantListing findById(Long id) {
+    public ParticipantListing findById(Long id, String... fetchFields) {
         participantListingDao.openCurrentSession();
         ParticipantListing participantListing = participantListingDao.findById(id);
         participantListingDao.closeCurrentSession();
         return participantListing;
     }
 
-    
     public void delete(Long id) {
         participantListingDao.openCurrentSessionwithTransaction();
         ParticipantListing book = participantListingDao.findById(id);
@@ -43,7 +39,7 @@ public class ParticipantListingService implements IBaseService<ParticipantListin
         participantListingDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<ParticipantListing> findAll() {
+    public List<ParticipantListing> findAll(String... fetchFields) {
         participantListingDao.openCurrentSession();
         List<ParticipantListing> participantListings = participantListingDao.findAll();
         participantListingDao.closeCurrentSession();

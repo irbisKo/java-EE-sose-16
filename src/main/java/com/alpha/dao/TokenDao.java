@@ -1,6 +1,7 @@
 package com.alpha.dao;
 
 import com.alpha.models.Token;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.math.BigInteger;
@@ -8,9 +9,6 @@ import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by arturschens on 10.10.15.
- */
 public class TokenDao extends BaseDao<Token> implements ITokenDao {
 
     public void persist(Token entity) {
@@ -21,16 +19,19 @@ public class TokenDao extends BaseDao<Token> implements ITokenDao {
         getCurrentSession().update(entity);
     }
 
-    public Token findById(Long id) {
-        return (Token) getCurrentSession().get(Token.class, id);
+    public Token findById(Long id, String... fetchFields) {
+        return (Token) getRootCriteria(Token.class, fetchFields)
+                .add(Restrictions.eq(Token.COLUMN_ID, id))
+                .uniqueResult();
     }
 
     public void delete(Token entity) {
         getCurrentSession().delete(entity);
     }
 
-    public List<Token> findAll() {
-        return (List<Token>) getCurrentSession().createCriteria(Token.class).list();
+    public List<Token> findAll(String... fetchFields) {
+        return (List<Token>) getRootCriteria(Token.class,fetchFields)
+                .list();
     }
 
     public void deleteAll() {
@@ -40,8 +41,10 @@ public class TokenDao extends BaseDao<Token> implements ITokenDao {
         }
     }
 
-    public Token findByToken(String token) {
-        return (Token) getCurrentSession().createCriteria(Token.class).add(Restrictions.eq("token", token)).uniqueResult();
+    public Token findByToken(String token, String... fetchFields) {
+        return (Token) getRootCriteria(Token.class, fetchFields)
+                .add(Restrictions.eq(Token.COLUMN_TOKEN, token))
+                .uniqueResult();
     }
 
     public Token newToken() {

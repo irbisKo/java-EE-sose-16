@@ -13,7 +13,11 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class SessionBean {
+
+    private static IUserService userService;
+
     public SessionBean() {
+        userService = new UserService();
     }
 
     public static HttpSession getSession() {
@@ -38,6 +42,6 @@ public class SessionBean {
     }
 
     public static User currentUser() {
-        return new UserService().findById(getUserId());
+        return userService.findById(getUserId());
     }
 }

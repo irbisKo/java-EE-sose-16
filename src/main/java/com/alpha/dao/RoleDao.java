@@ -2,6 +2,7 @@ package com.alpha.dao;
 
 import com.alpha.models.Role;
 import com.alpha.models.User;
+import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -18,16 +19,19 @@ public class RoleDao extends BaseDao<Role> implements IRoleDao {
         getCurrentSession().update(entity);
     }
 
-    public Role findById(Long id) {
-        return (Role) getCurrentSession().get(Role.class, id);
+    public Role findById(Long id, String... fetchFields) {
+        return (Role) getRootCriteria(Role.class, fetchFields)
+                .add(Restrictions.eq(Role.COLUMN_ID, id))
+                .uniqueResult();
     }
 
     public void delete(Role entity) {
         getCurrentSession().delete(entity);
     }
 
-    public List<Role> findAll() {
-        return (List<Role>) getCurrentSession().createCriteria(Role.class).list();
+    public List<Role> findAll(String... fetchFields) {
+        return (List<Role>) getRootCriteria(Role.class, fetchFields)
+                .list();
     }
 
     public void deleteAll() {

@@ -7,9 +7,6 @@ import com.alpha.util.PasswordEncryption;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 public class LoginDao {
 
     public static boolean validate(String email, String password) {

@@ -3,9 +3,6 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by arturschens on 10.10.15.
- */
 @Entity
 @Table(name = UserRole.TABLE_NAME)
 public class UserRole implements IModel{
@@ -34,11 +31,11 @@ public class UserRole implements IModel{
     @Column(name = UserRole.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = UserRole.COLUMN_USER_ID, nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = UserRole.COLUMN_ROLE_ID, nullable = false)
     private Role role;
 
