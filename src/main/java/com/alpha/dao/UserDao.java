@@ -1,11 +1,10 @@
 package com.alpha.dao;
 
-import com.alpha.models.Role;
 import com.alpha.models.User;
+import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,11 +20,18 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     }
 
     public User findById(Long id) {
-        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_ID, id)).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).uniqueResult();
+        return (User) getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.eq(User.COLUMN_ID, id))
+                .setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .uniqueResult();
     }
 
     public User findByEmail(String email) {
-        return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq(User.COLUMN_EMAIL, email)).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).uniqueResult();
+        return (User) getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.eq(User.COLUMN_EMAIL, email))
+                .setFetchMode(User.FIELD_ROLES, FetchMode.JOIN)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .uniqueResult();
     }
 
     public void delete(User entity) {
@@ -33,7 +39,9 @@ public class UserDao extends BaseDao<User> implements IUserDao {
     }
 
     public List<User> findAll() {
-        return (List<User>) getCurrentSession().createCriteria(User.class).setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).list();
+        return (List<User>) getCurrentSession().createCriteria(User.class)
+                .setFetchMode(User.FIELD_ROLES, FetchMode.JOIN).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
     }
 
     public void deleteAll() {

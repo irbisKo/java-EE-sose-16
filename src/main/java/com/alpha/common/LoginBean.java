@@ -55,7 +55,7 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    public String validateEmailPassword() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String validateEmailPassword() {
         boolean valid = LoginDao.validate(email, password);
         if (valid) {
             this.currentUser = new UserService().findByEmail(email);
