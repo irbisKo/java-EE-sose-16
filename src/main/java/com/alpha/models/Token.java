@@ -1,13 +1,9 @@
 package com.alpha.models;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by arturschens on 10.10.15.
- */
+
 @Entity
 @Table(name = Token.TABLE_NAME)
 public class Token implements IModel {

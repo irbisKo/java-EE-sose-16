@@ -1,7 +1,10 @@
 package com.alpha.dao;
 
-/**
- * Created by patrick on 10/10/15.
- */
+import com.alpha.models.Poll;
+
+import java.util.Set;
+
 public interface IPollDao {
+
+    Set<Poll> findByUserId(Long userId);
 }

@@ -3,8 +3,12 @@ package com.alpha.dao;
 
 import com.alpha.models.Poll;
 import com.alpha.models.Poll;
+import com.alpha.models.User;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import java.util.List;
+import java.util.Set;
 
 public class PollDao extends BaseDao<Poll>  implements IPollDao {
 
@@ -33,5 +37,9 @@ public class PollDao extends BaseDao<Poll>  implements IPollDao {
         for (Poll u : polls) {
             delete(u);
         }
+    }
+
+    public Set<Poll> findByUserId(Long userId) {
+        return (Set<Poll>) getCurrentSession().createCriteria(Poll.class).createCriteria("users", JoinType.INNER_JOIN).add(Restrictions.eq(User.COLUMN_ID,userId));
     }
 }

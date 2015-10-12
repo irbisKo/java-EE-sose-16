@@ -23,6 +23,15 @@ public class ParticipantListService implements IBaseService<ParticipantList>,IPa
         participantListingService = new ParticipantListingService();
     }
 
+
+    public List<Participant> getParticipants(Long participantListId) {
+        participantListDao.openCurrentSession();
+        ParticipantList pl = participantListDao.findById(participantListId);
+        List<Participant> participants = participantListDao.findParticipants(pl);
+        participantListDao.closeCurrentSession();
+        return participants;
+    }
+
     public void addParticipant(ParticipantList participantList, Participant participant) {
         ParticipantListing participantListing = participantListingDao.getByParticipantListAndParticipant(participantList.getId(), participant.getId());
         if (participantListing == null) {
@@ -60,6 +69,7 @@ public class ParticipantListService implements IBaseService<ParticipantList>,IPa
         participantListDao.closeCurrentSession();
         return participantList;
     }
+
 
     public void delete(Long id) {
         participantListDao.openCurrentSessionwithTransaction();

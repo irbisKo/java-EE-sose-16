@@ -1,14 +1,17 @@
 package com.alpha.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = User.TABLE_NAME)
 public class User implements IModel {
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_ROLES = "roles";
     public static final String TABLE_NAME = "users";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_EMAIL = "email";
@@ -39,8 +42,17 @@ public class User implements IModel {
     @Column(name = User.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
     private List<ParticipantList> participantLists;
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = UserRole.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = UserRole.COLUMN_USER_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = UserRole.COLUMN_ROLE_ID))
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -85,6 +97,19 @@ public class User implements IModel {
     public String getSalt() {
         return salt;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public ArrayList<Role> getRolesArray() {
+        return new ArrayList<Role>(getRoles());
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
     public void setSalt(String salt) {
         this.salt = salt;

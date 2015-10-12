@@ -1,13 +1,17 @@
 package com.alpha.common;
 
+import com.alpha.models.User;
+import com.alpha.service.IUserService;
+import com.alpha.service.UserService;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 public class SessionBean {
+    public SessionBean() {
+    }
+
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     }
@@ -21,11 +25,15 @@ public class SessionBean {
         return session.getAttribute("email").toString();
     }
 
-    public static String getUserId() {
+    public static Long getUserId() {
         HttpSession session = getSession();
         if (session != null)
-            return (String) session.getAttribute("userid");
+            return (Long) session.getAttribute("userid");
         else
             return null;
+    }
+
+    public static User currentUser() {
+        return new UserService().findById(getUserId());
     }
 }

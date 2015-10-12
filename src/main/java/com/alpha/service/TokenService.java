@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by arturschens on 10.10.15.
  */
-public class TokenService implements IBaseService<Token> {
+public class TokenService implements ITokenService  {
     private static TokenDao tokenDao;
 
     public TokenService() {
@@ -23,7 +23,10 @@ public class TokenService implements IBaseService<Token> {
     }
 
     public void newToken() {
+        tokenDao.openCurrentSession().beginTransaction();
         this.persist(tokenDao.newToken());
+        tokenDao.openCurrentSession().getTransaction().commit();
+        tokenDao.closeCurrentSession();
     }
 
     public void persist(Token token) {

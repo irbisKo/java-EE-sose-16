@@ -45,10 +45,10 @@ public class Poll implements IModel {
     @Column(name = Poll.COLUMN_END_AT, nullable = false)
     private Date endAt;
 
-    @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.LAZY)
     private List<Item> items;
 
-    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.LAZY)
     private List<Token> tokens;
 
     public Date getEndAt() {

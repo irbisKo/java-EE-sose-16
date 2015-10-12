@@ -60,6 +60,7 @@ public class LoginBean implements Serializable {
             this.currentUser = new UserService().findByEmail(email);
             HttpSession session = SessionBean.getSession();
             session.setAttribute("email", email);
+            session.setAttribute("userid", currentUser.getId());
             return "hello";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
