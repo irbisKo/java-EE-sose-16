@@ -1,6 +1,5 @@
 package com.alpha.common;
 
-import com.alpha.models.Role;
 import com.alpha.models.User;
 import com.alpha.service.IRoleService;
 import com.alpha.service.IUserService;
@@ -8,15 +7,15 @@ import com.alpha.service.RoleService;
 import com.alpha.service.UserService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
 @SessionScoped
 public class UserBean {
 
-    @Inject
+    @ManagedProperty(value = "#{roleHolderBean}")
     private RoleHolderBean roleHolderBean;
     private static IUserService userService;
     private static IRoleService roleService;
@@ -38,4 +37,11 @@ public class UserBean {
         return roleService.userHasRole(user, roleHolderBean.getOrganizer());
     }
 
+    public RoleHolderBean getRoleHolderBean() {
+        return roleHolderBean;
+    }
+
+    public void setRoleHolderBean(RoleHolderBean roleHolderBean) {
+        this.roleHolderBean = roleHolderBean;
+    }
 }

@@ -11,7 +11,6 @@ import javax.inject.Inject;
 @SessionScoped
 public class RoleBean {
 
-    @Inject
     private RoleHolderBean roleHolderBean;
     private static IUserService userService;
 

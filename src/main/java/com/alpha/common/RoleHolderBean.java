@@ -4,8 +4,8 @@ import com.alpha.models.Role;
 import com.alpha.service.IRoleService;
 import com.alpha.service.RoleService;
 
-import javax.annotation.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 
 @ManagedBean

@@ -1,13 +1,16 @@
 package com.alpha.common;
 
 import com.alpha.models.User;
-import com.alpha.service.IUserService;
 import com.alpha.service.UserService;
 
+import javax.annotation.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@ManagedBean
+@SessionScoped
 public class SessionBean {
     public SessionBean() {
     }

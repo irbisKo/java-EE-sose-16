@@ -6,8 +6,9 @@ import com.alpha.service.IUserService;
 import com.alpha.service.PollService;
 import com.alpha.service.UserService;
 
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 
