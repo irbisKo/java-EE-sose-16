@@ -34,8 +34,7 @@ public class Role implements IModel {
     private Date updatedAt;
 
 
-    @ManyToMany(fetch = FetchType.LAZY
-    )
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = UserRole.TABLE_NAME,
             joinColumns =
             @JoinColumn(name = UserRole.COLUMN_ROLE_ID),

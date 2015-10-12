@@ -8,16 +8,13 @@ import com.alpha.models.User;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Set;
 
 @Resource(name = "pollService")
 public class PollService implements IPollService {
     private static PollDao pollDao;
-    private static ParticipantListService participantListService;
 
     public PollService() {
         pollDao = new PollDao();
-        participantListService = new ParticipantListService();
     }
 
     public void persist(Poll participantList) {
@@ -32,7 +29,7 @@ public class PollService implements IPollService {
         pollDao.closeCurrentSessionwithTransaction();
     }
 
-    public Poll findById(Long id) {
+    public Poll findById(Long id,String... fetchFields) {
         pollDao.openCurrentSession();
         Poll participantList = pollDao.findById(id);
         pollDao.closeCurrentSession();
@@ -46,7 +43,7 @@ public class PollService implements IPollService {
         pollDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<Poll> findAll() {
+    public List<Poll> findAll(String... fetchFields) {
         pollDao.openCurrentSession();
         List<Poll> participantList = pollDao.findAll();
         pollDao.closeCurrentSession();
@@ -67,25 +64,27 @@ public class PollService implements IPollService {
 
     }
 
-    public void addParticipantListsToPoll(Poll poll, ParticipantList participantList) {
+    public void addParticipantListToPoll(Poll poll, ParticipantList participantList) {
 
     }
 
-    public void removeParticipantListsToPoll(Poll poll, ParticipantList participantList) {
+    public void removeParticipantListToPoll(Poll poll, ParticipantList participantList) {
 
     }
 
     public void addUserToPoll(Poll poll, User user) {
+        pollDao.openCurrentSessionwithTransaction();
 
+        pollDao.closeCurrentSessionwithTransaction();
     }
 
     public void removeUserFromPoll(Poll poll, User user) {
 
     }
 
-    public Set<Poll> findByUser(User user) {
+    public List<Poll> findByUser(User user,String... fetchFields) {
         pollDao.openCurrentSessionwithTransaction();
-        Set<Poll> polls =  pollDao.findByUserId(user.getId());
+        List<Poll> polls =  pollDao.findByUserId(user.getId());
         pollDao.closeCurrentSessionwithTransaction();
         return polls;
     }

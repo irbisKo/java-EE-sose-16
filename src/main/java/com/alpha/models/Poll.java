@@ -3,12 +3,14 @@ package com.alpha.models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = Poll.TABLE_NAME)
 public class Poll implements IModel {
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_USERS = "users";
     public static final String TABLE_NAME = "polls";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CREATED_AT = "created_at";
@@ -45,11 +47,19 @@ public class Poll implements IModel {
     @Column(name = Poll.COLUMN_END_AT, nullable = false)
     private Date endAt;
 
-    @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = Item.FIELD_POLL, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Item> items;
 
-    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = Token.FIELD_NAME, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Token> tokens;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = UserPollListing.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = UserPollListing.COLUMN_POLL_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = UserPollListing.COLUMN_USER_ID))
+    private Set<User> users;
 
     public Date getEndAt() {
         return endAt;

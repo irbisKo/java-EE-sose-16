@@ -35,7 +35,7 @@ public class ParticipantList implements IModel {
     @Column(name = ParticipantList.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = ParticipantList.COLUMN_USER_ID)
     private User user;
 

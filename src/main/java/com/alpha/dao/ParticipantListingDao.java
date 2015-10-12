@@ -1,13 +1,11 @@
 package com.alpha.dao;
 
 import com.alpha.models.ParticipantListing;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-/**
- * Created by patrick on 10/10/15.
- */
 public class ParticipantListingDao extends BaseDao<ParticipantListing> implements IParticipantListingDao{
 
     public ParticipantListing getByParticipantListAndParticipant(Long participantListId, Long participantId) {
@@ -26,16 +24,19 @@ public class ParticipantListingDao extends BaseDao<ParticipantListing> implement
          getCurrentSession().update(entity);
     }
 
-    public ParticipantListing findById(Long id) {
-        return (ParticipantListing) getCurrentSession().get(ParticipantListing.class, id);
+    public ParticipantListing findById(Long id, String... fetchFields) {
+        return (ParticipantListing) getRootCriteria(ParticipantListing.class, fetchFields)
+                .add(Restrictions.eq(ParticipantListing.COLUMN_ID, id))
+                .uniqueResult();
     }
 
     public void delete(ParticipantListing entity) {
         getCurrentSession().delete(entity);
     }
 
-    public List<ParticipantListing> findAll() {
-        return (List<ParticipantListing>) getCurrentSession().createCriteria(ParticipantListing.class).list();
+    public List<ParticipantListing> findAll(String... fetchFields) {
+        return (List<ParticipantListing>) getRootCriteria(ParticipantListing.class, fetchFields)
+                .list();
     }
 
     public void deleteAll() {

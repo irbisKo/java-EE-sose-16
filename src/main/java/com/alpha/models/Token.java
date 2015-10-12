@@ -33,7 +33,7 @@ public class Token implements IModel {
     @Column(name = Token.COLUMN_TOKEN, unique = true, nullable = false)
     private String token;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = Token.COLUMN_POLL_ID)
     private Poll poll;
 

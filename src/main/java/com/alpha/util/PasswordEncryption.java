@@ -10,9 +10,6 @@ import java.security.spec.KeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 public class PasswordEncryption {
 
 

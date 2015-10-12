@@ -1,25 +1,17 @@
 package com.alpha.service;
 
-import com.alpha.dao.RoleDao;
 import com.alpha.dao.UserDao;
-import com.alpha.models.Role;
 import com.alpha.models.User;
 
 import java.util.List;
-import java.util.Set;
 
-/**
- * Created by erwinschens on 27.04.15.
- */
 public class UserService implements IUserService {
 
     private static UserDao userDao;
-    private static RoleDao roleDao;
 
 
     public UserService() {
         userDao = new UserDao();
-        roleDao = new RoleDao();
     }
 
     public void persist(User user) {
@@ -34,7 +26,7 @@ public class UserService implements IUserService {
         userDao.closeCurrentSessionwithTransaction();
     }
 
-    public User findById(Long id) {
+    public User findById(Long id, String... fetchFields) {
         userDao.openCurrentSession();
         User user = userDao.findById(id);
         userDao.closeCurrentSession();
@@ -55,9 +47,9 @@ public class UserService implements IUserService {
         userDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<User> findAll() {
+    public List<User> findAll(String... fetchFields) {
         userDao.openCurrentSession();
-        List<User> users = userDao.findAll();
+        List<User> users = userDao.findAll(fetchFields);
         userDao.closeCurrentSession();
         return users;
     }

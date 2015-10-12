@@ -26,7 +26,7 @@ public class UserBean {
     }
 
     public List<User> getUsers() {
-        return userService.findAll();
+        return userService.findAll(User.FIELD_ROLES);
     }
 
     public boolean isAdmin(User user) {

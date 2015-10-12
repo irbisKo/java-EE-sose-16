@@ -27,11 +27,11 @@ public class ParticipantListing implements IModel{
     @Column(name = ParticipantListing.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_ID, nullable = false)
     private Participant participant;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = ParticipantListing.COLUMN_PARTICIPANT_LIST_ID, nullable = false)
     private ParticipantList participantList;
 

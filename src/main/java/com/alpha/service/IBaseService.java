@@ -8,11 +8,11 @@ public interface IBaseService<T> {
 
     void update(T t);
 
-    T findById(Long id);
+    T findById(Long id, String... fetchFields);
 
     void delete(Long id);
 
-    List<T> findAll();
+    List<T> findAll(String... fetchFields);
 
     void deleteAll();
 

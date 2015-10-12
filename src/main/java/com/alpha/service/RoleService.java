@@ -9,9 +9,6 @@ import com.alpha.models.UserRole;
 
 import java.util.List;
 
-/**
- * Created by patrick on 11/10/15.
- */
 public class RoleService implements IRoleService {
 
     private static RoleDao roleDao;
@@ -35,7 +32,7 @@ public class RoleService implements IRoleService {
         roleDao.closeCurrentSessionwithTransaction();
     }
 
-    public Role findById(Long id) {
+    public Role findById(Long id,String... fetchFields) {
         roleDao.openCurrentSession();
         Role participantList = roleDao.findById(id);
         roleDao.closeCurrentSession();
@@ -49,7 +46,7 @@ public class RoleService implements IRoleService {
         roleDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<Role> findAll() {
+    public List<Role> findAll(String... fetchFields) {
         roleDao.openCurrentSession();
         List<Role> participantList = roleDao.findAll();
         roleDao.closeCurrentSession();

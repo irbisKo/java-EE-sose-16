@@ -1,9 +1,7 @@
 package com.alpha.dao;
 
 import com.alpha.models.IModel;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
@@ -70,5 +68,12 @@ public abstract class BaseDao<T extends IModel> implements IBaseDao<T> {
         if (id == null || id < 1) {
             throw new IllegalArgumentException("Call of the DAO method with illegal entity identifier: " + id);
         }
+    }
+
+    protected Criteria getRootCriteria(Class clazz, String... fetchModes) {
+        Criteria criteria = getCurrentSession().createCriteria(clazz);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (fetchModes != null) for (String fetchMode : fetchModes) criteria.setFetchMode(fetchMode, FetchMode.JOIN);
+        return criteria;
     }
 }

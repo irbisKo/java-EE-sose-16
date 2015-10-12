@@ -4,19 +4,17 @@ import com.alpha.models.IModel;
 
 import java.util.List;
 
-/**
- * Created by erwinschens on 27.04.15.
- */
+
 public interface IBaseDao<T extends IModel> {
     void persist(T entity);
 
     void update(T entity);
 
-    T findById(Long id);
+    T findById(Long id, String... fetchFields);
 
     void delete(T entity);
 
-    List<T> findAll();
+    List<T> findAll(String... fetchFields);
 
     void deleteAll();
 }

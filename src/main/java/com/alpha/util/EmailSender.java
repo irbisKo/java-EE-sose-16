@@ -6,9 +6,6 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 public class EmailSender {
 
     private Properties properties;

@@ -3,13 +3,12 @@ package com.alpha.dao;
 import com.alpha.models.Role;
 import com.alpha.models.User;
 import com.alpha.models.UserRole;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-/**
- * Created by patrick on 11/10/15.
- */
+
 public class UserRoleDao extends BaseDao<UserRole> implements IUserRoleDao {
 
     public void persist(UserRole entity) {
@@ -20,16 +19,20 @@ public class UserRoleDao extends BaseDao<UserRole> implements IUserRoleDao {
         getCurrentSession().update(entity);
     }
 
-    public UserRole findById(Long id) {
-        return (UserRole) getCurrentSession().get(UserRole.class, id);
+    public UserRole findById(Long id,String... fetchFields) {
+        return (UserRole) getRootCriteria(UserRole.class, fetchFields)
+                .add(Restrictions.eq(UserRole.COLUMN_ID, id))
+                .uniqueResult();
     }
 
     public void delete(UserRole entity) {
         getCurrentSession().delete(entity);
     }
 
-    public List<UserRole> findAll() {
-        return (List<UserRole>) getCurrentSession().createCriteria(UserRole.class).list();
+    public List<UserRole> findAll(String... fetchFields) {
+        return (List<UserRole>) getRootCriteria(UserRole.class, fetchFields)
+
+                .list();
     }
 
     public void deleteAll() {
@@ -39,7 +42,9 @@ public class UserRoleDao extends BaseDao<UserRole> implements IUserRoleDao {
         }
     }
 
-    public UserRole findByUserandRole(User user, Role role) {
-        return (UserRole) getCurrentSession().createCriteria(UserRole.class).add(Restrictions.and(Restrictions.eq(UserRole.FIELD_USER, user), Restrictions.eq(UserRole.FIELD_ROLE, role))).uniqueResult();
+    public UserRole findByUserandRole(User user, Role role, String... fetchFields) {
+        return (UserRole) getRootCriteria(UserRole.class,fetchFields)
+                .add(Restrictions.and(Restrictions.eq(UserRole.FIELD_USER, user), Restrictions.eq(UserRole.FIELD_ROLE, role)))
+                .uniqueResult();
     }
 }

@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
-/**
- * Created by erwinschens on 12.10.15.
- */
 @ManagedBean
 @SessionScoped
 public class LdapLoginBean {

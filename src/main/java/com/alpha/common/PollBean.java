@@ -1,11 +1,10 @@
 package com.alpha.common;
 
+import com.alpha.models.ParticipantList;
 import com.alpha.models.Poll;
+import com.alpha.models.User;
 import com.alpha.service.IPollService;
-import com.alpha.service.IUserService;
 import com.alpha.service.PollService;
-import com.alpha.service.UserService;
-
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,16 +15,32 @@ import java.util.ArrayList;
 @SessionScoped
 public class PollBean implements Serializable {
 
-    private static IUserService userService;
     private static IPollService pollService;
 
     public PollBean() {
-        userService = new UserService();
         pollService = new PollService();
     }
 
-    public ArrayList<Poll> getCurrentUserPolls(){
-        return new ArrayList<Poll>(pollService.findByUser(SessionBean.currentUser()));
+    public ArrayList<Poll> getCurrentUserPolls() {
+        return (ArrayList<Poll>) pollService.findByUser(SessionBean.currentUser());
     }
+
+    public void addUserToPoll(Poll poll, User user) {
+        pollService.addUserToPoll(poll, user);
+    }
+
+    public void removeUserFromPoll(Poll poll, User user) {
+        pollService.removeUserFromPoll(poll, user);
+    }
+
+    public void addParticipantListToPoll(Poll poll, ParticipantList participantList) {
+        pollService.addParticipantListToPoll(poll, participantList);
+    }
+
+    public void removeParticipantListFromPoll(Poll poll, ParticipantList participantList) {
+        pollService.removeParticipantListToPoll(poll, participantList);
+    }
+
+
 
 }

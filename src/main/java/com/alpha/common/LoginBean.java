@@ -15,9 +15,6 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-/**
- * Created by erwinschens on 10.10.15.
- */
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {

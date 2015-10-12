@@ -1,7 +1,8 @@
 package com.alpha.dao;
 
-/**
- * Created by erwinschens on 27.04.15.
- */
+import com.alpha.models.User;
+
 public interface IUserDao {
+
+    User findByEmail(String email, String... fetchFields);
 }

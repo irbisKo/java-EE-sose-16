@@ -11,6 +11,7 @@ import java.util.Set;
 public class User implements IModel {
     private static final long serialVersionUID = 1L;
 
+    public static final String FIELD_POLLS = "polls";
     public static final String FIELD_ROLES = "roles";
     public static final String TABLE_NAME = "users";
     public static final String COLUMN_ID = "id";
@@ -42,16 +43,24 @@ public class User implements IModel {
     @Column(name = User.COLUMN_UPDATED_AT, nullable = false)
     private Date updatedAt;
 
-    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = ParticipantList.FIELD_USER, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ParticipantList> participantLists;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = UserRole.TABLE_NAME,
             joinColumns =
             @JoinColumn(name = UserRole.COLUMN_USER_ID),
             inverseJoinColumns =
             @JoinColumn(name = UserRole.COLUMN_ROLE_ID))
     private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = UserPollListing.TABLE_NAME,
+            joinColumns =
+            @JoinColumn(name = UserPollListing.COLUMN_USER_ID),
+            inverseJoinColumns =
+            @JoinColumn(name = UserPollListing.COLUMN_POLL_ID))
+    private Set<Poll> polls;
 
     public Long getId() {
         return id;

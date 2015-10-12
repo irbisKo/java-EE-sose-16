@@ -41,10 +41,10 @@ public class Item implements  IModel{
     @Column(name = Item.COLUMN_TYPE)
     private String type;
 
-    @OneToMany(mappedBy = Option.FIELD_ITEM, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = Option.FIELD_ITEM, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Option> options;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = Item.COLUMN_POLL_ID)
     private Poll poll;
 
