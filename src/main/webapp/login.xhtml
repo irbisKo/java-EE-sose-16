@@ -5,20 +5,41 @@
     <ui:define name="content">
 
         <b:jumbotron>
-            <h3>Votes Login</h3>
-            <h:form id="loginForm">
-                <h:panelGrid id="loginPanel">
-                    <h:outputLabel for="email" value="Email:"/>
-                    <b:inputText id="email" value="#{loginBean.email}">
-                        <f:validateLength minimum="2"/>
-                    </b:inputText>
-                    <h:outputLabel for="password" value="Password:"/>
-                    <b:inputSecret id="password" value="#{loginBean.password}" required="true"></b:inputSecret>
-                    <h:message for="password"/>
-                    <b:commandButton action="#{loginBean.validateEmailPassword}"
-                                     value="Login"></b:commandButton>
-                </h:panelGrid>
-            </h:form>
+            <b:row>
+                <b:column span="6">
+                    <h3>Votes Login</h3>
+                    <h:form id="loginForm">
+                        <h:panelGrid id="loginPanel">
+                            <h:outputLabel for="email" value="Email:"/>
+                            <b:inputText id="email" value="#{loginBean.email}">
+                                <f:validateLength minimum="2"/>
+                            </b:inputText>
+                            <h:outputLabel for="password" value="Password:"/>
+                            <b:inputSecret id="password" value="#{loginBean.password}" required="true"></b:inputSecret>
+                            <h:message for="password"/>
+                            <b:commandButton action="#{loginBean.validateEmailPassword}"
+                                             value="Login"></b:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </b:column>
+                <b:column span="6">
+                    <h3>LDAP Login</h3>
+                    <h:form id="loginForm2">
+                        <h:panelGrid id="loginPanel2">
+                            <h:outputLabel for="email" value="Email:"/>
+                            <b:inputText id="email2" value="#{loginBean.email}">
+                                <f:validateLength minimum="2"/>
+                            </b:inputText>
+                            <h:outputLabel for="password" value="Password:"/>
+                            <b:inputSecret id="password2" value="#{loginBean.password}" required="true"></b:inputSecret>
+                            <h:message for="password"/>
+                            <b:commandButton action="#{loginBean.validateEmailPassword}"
+                                             value="Login"></b:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </b:column>
+            </b:row>
+
         </b:jumbotron>
 
     </ui:define>

@@ -3,6 +3,7 @@ package com.alpha.common;
 import com.alpha.dao.login.LoginDao;
 import com.alpha.models.User;
 import com.alpha.service.UserService;
+import com.alpha.util.LdapAuthenticator;
 import com.alpha.util.PasswordEncryption;
 
 import javax.faces.application.FacesMessage;
@@ -54,7 +55,7 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    public String validateEmailPassword() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String validateEmailPassword() {
         boolean valid = LoginDao.validate(email, password);
         if (valid) {
             this.currentUser = new UserService().findByEmail(email);
