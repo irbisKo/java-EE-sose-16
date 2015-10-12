@@ -5,9 +5,9 @@
                 xmlns:b="http://bootsfaces.net/ui">
     <b:navBar brand="Votes" brandHref="welcome.xhtml">
         <b:navbarLinks>
-            <b:navLink value="Polls" rendered="#{loginBean.currentUser != null}" href="#"></b:navLink>
-            <b:navLink value="Benutzer" rendered="#{loginBean.currentUser != null}" href="users.xhtml"></b:navLink>
-            <b:navLink value="Logout" rendered="#{loginBean.currentUser != null}" href="#"></b:navLink>
+            <b:navLink value="Polls" rendered="#{sessionBean.currentUser() != null}" href="#"></b:navLink>
+            <b:navLink value="Benutzer" rendered="#{sessionBean.currentUser() != null}" href="users.xhtml"></b:navLink>
+            <b:navLink value="Logout" rendered="#{sessionBean.currentUser() != null}" href="#"></b:navLink>
         </b:navbarLinks>
     </b:navBar>
 </ui:composition>
