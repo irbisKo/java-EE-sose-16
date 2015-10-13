@@ -1,11 +1,10 @@
-package com.alpha.common;
+package com.alpha.common.role;
 
 import com.alpha.service.IUserService;
 import com.alpha.service.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 
 @ManagedBean
 @SessionScoped

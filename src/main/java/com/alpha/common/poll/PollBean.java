@@ -1,5 +1,6 @@
-package com.alpha.common;
+package com.alpha.common.poll;
 
+import com.alpha.common.SessionBean;
 import com.alpha.models.ParticipantList;
 import com.alpha.models.Poll;
 import com.alpha.models.User;
@@ -40,7 +41,5 @@ public class PollBean implements Serializable {
     public void removeParticipantListFromPoll(Poll poll, ParticipantList participantList) {
         pollService.removeParticipantListToPoll(poll, participantList);
     }
-
-
 
 }

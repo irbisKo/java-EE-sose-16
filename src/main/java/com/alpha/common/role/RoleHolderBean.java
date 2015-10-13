@@ -1,4 +1,4 @@
-package com.alpha.common;
+package com.alpha.common.role;
 
 import com.alpha.models.Role;
 import com.alpha.service.IRoleService;

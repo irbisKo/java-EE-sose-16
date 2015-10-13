@@ -24,6 +24,30 @@ public class LoginBean implements Serializable {
     private String email;
     private User currentUser;
 
+    public String validateEmailPassword() {
+        boolean valid = LoginDao.validate(email, password);
+        if (valid) {
+            this.currentUser = new UserService().findByEmail(email);
+            HttpSession session = SessionBean.getSession();
+            session.setAttribute("email", email);
+            session.setAttribute("userid", currentUser.getId());
+            return "hello";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("VALIDATION", "Ungültige Email oder Passwort"));
+            return "login";
+        }
+    }
+
+    public String logout() {
+        HttpSession session = SessionBean.getSession();
+        session.invalidate();
+        this.currentUser = null;
+        return "login";
+    }
+
+    // ==== Getter && Setter ====
+
     public String getEmail() {
         return email;
     }
@@ -52,25 +76,4 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
-    public String validateEmailPassword() {
-        boolean valid = LoginDao.validate(email, password);
-        if (valid) {
-            this.currentUser = new UserService().findByEmail(email);
-            HttpSession session = SessionBean.getSession();
-            session.setAttribute("email", email);
-            session.setAttribute("userid", currentUser.getId());
-            return "hello";
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("VALIDATION", "Ungültige Email oder Passwort"));
-            return "login";
-        }
-    }
-
-    public String logout() {
-        HttpSession session = SessionBean.getSession();
-        session.invalidate();
-        this.currentUser = null;
-        return "login";
-    }
 }

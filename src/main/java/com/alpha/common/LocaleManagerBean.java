@@ -12,16 +12,18 @@ public class LocaleManagerBean {
 
     private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
+    public void setLanguage(String language) {
+        locale = new Locale(language);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
+
+    // ==== Getter && Setter ====
+
     public Locale getLocale() {
         return locale;
     }
 
     public String getLanguage() {
         return locale.getLanguage();
-    }
-
-    public void setLanguage(String language) {
-        locale = new Locale(language);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
     }
 }
