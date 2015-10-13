@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/default/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:b="http://bootsfaces.net/ui">
+    <f:metadata>
+        <f:viewParam name="userId" value="#{userEditBean.userId}"/>
+        <f:event type="preRenderView" listener="#{userEditBean.preRender}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <b:container>
+            <b:row>
+                <b:panel title="#{userEditBean.user.email}" collapsible="false">
+                </b:panel>
+            </b:row>
+        </b:container>
+    </ui:define>
+</ui:composition>

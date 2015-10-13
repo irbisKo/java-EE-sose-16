@@ -4,6 +4,7 @@ import com.alpha.models.User;
 import com.alpha.service.IUserService;
 import com.alpha.service.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -44,4 +45,7 @@ public class SessionBean {
     public static User currentUser() {
         return userService.findById(getUserId());
     }
+
+    // ==== Getter && Setter ====
+
 }

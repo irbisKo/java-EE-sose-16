@@ -4,6 +4,10 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userBean.preRender}"/>
+    </f:metadata>
+
     <ui:define name="content">
         <b:container>
             <b:row>
@@ -29,9 +33,10 @@
                         </h:column>
                         <h:column>
                             <b:buttonGroup rendered="#{userBean.isAdmin(user)}">
-                                <b:button look="info" icon="pencil" value="" tooltip="Bearbeiten"
-                                          tooltipPosition="top"/>
-                                <b:button look="danger" icon="remove" value="" tooltip="Löschen" tooltipPosition="top"/>
+                                <b:button outcome="userEdit" look="info" icon="pencil" value="" tooltip="Bearbeiten"
+                                          tooltipPosition="top">
+                                    <f:param name="userId" value="#{user.id}"/>
+                                </b:button>
                             </b:buttonGroup>
                         </h:column>
                     </h:dataTable>
