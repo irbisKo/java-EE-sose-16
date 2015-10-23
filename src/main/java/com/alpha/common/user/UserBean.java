@@ -7,7 +7,6 @@ import com.alpha.service.IUserService;
 import com.alpha.service.RoleService;
 import com.alpha.service.UserService;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
