@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 
 @ManagedBean
 @SessionScoped
@@ -30,9 +31,10 @@ public class HelloBean implements Serializable {
 
         session.beginTransaction();
         User user = new User();
-
         user.setEmail("test@web.de");
         user.setPasswordEncrypted("test1234");
+        user.setCreatedAt(new Date());
+        user.setUpdatedAt(new Date());
 
         session.save(user);
         session.getTransaction().commit();
