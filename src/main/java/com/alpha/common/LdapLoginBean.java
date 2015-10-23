@@ -2,6 +2,7 @@ package com.alpha.common;
 
 import com.alpha.models.User;
 import com.alpha.service.UserService;
+import com.alpha.util.FlashMessage;
 import com.alpha.util.LdapAuthenticator;
 import com.alpha.util.MessageSender;
 import com.alpha.util.PasswordEncryption;
@@ -32,10 +33,10 @@ public class LdapLoginBean {
             HttpSession session = SessionBean.getSession();
             session.setAttribute("email", this.username + "@uni-koblenz.de");
             session.setAttribute("userid", user.getId());
+            FlashMessage.showFlashInfo("login.success.title", "login.success.text");
             return "hello";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(new MessageSender().getI18nMessage("login.fail.invalid_credentials.title"), new MessageSender().getI18nMessage("login.fail.invalid_credentials.text")));
+            FlashMessage.showFlashError("login.fail.invalid_credentials.title", "login.fail.invalid_credentials.text");
             return "login";
         }
     }

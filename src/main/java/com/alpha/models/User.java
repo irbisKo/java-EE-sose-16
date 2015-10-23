@@ -16,6 +16,7 @@ public class User implements IModel {
     public static final String TABLE_NAME = "users";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_CONFIRMATION_SENT_AT = "confirmation_sent_at";
     public static final String COLUMN_PASSWORD_ENCRYPTED = "password_encrypted";
     public static final String COLUMN_CREATED_AT = "created_at";
     public static final String COLUMN_UPDATED_AT = "updated_at";
@@ -34,6 +35,10 @@ public class User implements IModel {
 
     @Column(name = User.COLUMN_SALT, nullable = false)
     private String salt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = User.COLUMN_CONFIRMATION_SENT_AT, nullable = true)
+    private Date confirmationSentAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = User.COLUMN_CREATED_AT, nullable = false)
@@ -118,6 +123,13 @@ public class User implements IModel {
         this.roles = roles;
     }
 
+    public Date getConfirmationSentAt() {
+        return confirmationSentAt;
+    }
+
+    public void setConfirmationSentAt(Date confirmationSentAt) {
+        this.confirmationSentAt = confirmationSentAt;
+    }
 
     public void setSalt(String salt) {
         this.salt = salt;
