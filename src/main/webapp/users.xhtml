@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/default/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userBean.preRender}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <b:container>
+            <b:row>
+                <b:panel title="Benutzer" collapsible="false">
+                    <h:dataTable styleClass="table table-striped" value="#{userBean.users}" var="user">
+                        <h:column>
+                            <f:facet name="header">
+                                E-Mail
+                            </f:facet>
+                            <h:outputText value="#{user.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Rollen
+                            </f:facet>
+                            <b:label rendered="#{empty user.roles}" text="Keine Rollen verfügbar"
+                                     severity="warning"/>
+                            <ui:repeat value="#{user.getRolesArray()}" var="role">
+                            <span class="role-label">
+                                <b:label text="#{role.roleName}" severity="info"/>
+                            </span>
+                            </ui:repeat>
+                        </h:column>
+                        <h:column>
+                            <b:buttonGroup rendered="#{userBean.isAdmin(user)}">
+                                <b:button outcome="userEdit" look="info" icon="pencil" value="" tooltip="Bearbeiten"
+                                          tooltipPosition="top">
+                                    <f:param name="userId" value="#{user.id}"/>
+                                </b:button>
+                            </b:buttonGroup>
+                        </h:column>
+                    </h:dataTable>
+                    <h:link value="Neuer Benutzer" outcome="newUser"></h:link>
+                </b:panel>
+            </b:row>
+        </b:container>
+    </ui:define>
+</ui:composition>
+
+
+

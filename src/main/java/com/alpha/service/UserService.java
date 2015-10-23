@@ -5,12 +5,10 @@ import com.alpha.models.User;
 
 import java.util.List;
 
-/**
- * Created by erwinschens on 27.04.15.
- */
-public class UserService {
+public class UserService implements IUserService {
 
     private static UserDao userDao;
+
 
     public UserService() {
         userDao = new UserDao();
@@ -28,9 +26,16 @@ public class UserService {
         userDao.closeCurrentSessionwithTransaction();
     }
 
-    public User findById(Long id) {
+    public User findById(Long id, String... fetchFields) {
         userDao.openCurrentSession();
         User user = userDao.findById(id);
+        userDao.closeCurrentSession();
+        return user;
+    }
+
+    public User findByEmail(String email) {
+        userDao.openCurrentSession();
+        User user = userDao.findByEmail(email);
         userDao.closeCurrentSession();
         return user;
     }
@@ -42,9 +47,9 @@ public class UserService {
         userDao.closeCurrentSessionwithTransaction();
     }
 
-    public List<User> findAll() {
+    public List<User> findAll(String... fetchFields) {
         userDao.openCurrentSession();
-        List<User> users = userDao.findAll();
+        List<User> users = userDao.findAll(fetchFields);
         userDao.closeCurrentSession();
         return users;
     }
@@ -54,9 +59,4 @@ public class UserService {
         userDao.deleteAll();
         userDao.closeCurrentSessionwithTransaction();
     }
-
-    public UserDao getUserDao() {
-        return userDao;
-    }
-
 }

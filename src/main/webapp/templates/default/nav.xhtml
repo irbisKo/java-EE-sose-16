@@ -1,10 +1,11 @@
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:b="http://bootsfaces.net/ui">
-    <b:navBar brand="Brand" brandHref="#">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+    <b:navBar brand="Votes" brando="welcome.xhtml">
         <b:navbarLinks>
-            <b:navLink value="Home" href="#"></b:navLink>
-            <b:navLink value="Link" href="#"></b:navLink>
-            <b:navLink value="Link" href="#"></b:navLink>
+            <b:navLink value="Polls" rendered="#{sessionBean.currentUser() != null}" outcome="polls" />
+            <b:navLink value="Benutzer" rendered="#{sessionBean.currentUser() != null}" outcome="users" />
+            <b:navLink value="Logout" rendered="#{sessionBean.currentUser() != null}" href="#" />
         </b:navbarLinks>
     </b:navBar>
 </ui:composition>

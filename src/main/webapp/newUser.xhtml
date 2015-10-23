@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/default/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <b:container>
+            <b:row>
+                <b:panel title="Neuer Benutzer" collapsible="false">
+                    <h:form id="newUserForm">
+                        <h:panelGrid id="newUserPanel">
+                            <h:outputLabel for="email" value="#{i18n['login.username']}:"/>
+                            <b:inputText id="email" value="#{newUserBean.email}">
+                                <f:validateLength minimum="2"/>
+                            </b:inputText>
+                            <h:outputLabel for="password" value="#{i18n['login.password']}:"/>
+                            <b:inputSecret id="password" value="#{newUserBean.password}" required="true">
+                            </b:inputSecret>
+                            <h:outputLabel for="passwordConfirmation" value="#{i18n['login.password']}:" />
+                            <b:inputSecret id="passwordConfirmation" value="#{newUserBean.passwordConfirmation}" required="true">
+                            </b:inputSecret>
+                            <b:commandButton action="#{newUserBean.createNewUser}"
+                                             value="#{i18n['login']}">
+                            </b:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                    <h:link value="Alle Benutzer" outcome="users"></h:link>
+                </b:panel>
+            </b:row>
+        </b:container>
+    </ui:define>
+</ui:composition>
