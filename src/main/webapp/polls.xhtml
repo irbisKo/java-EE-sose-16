@@ -1,1 +1,37 @@
-Yo mamma
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/default/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{pollBean.preRender}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <b:container>
+            <b:row>
+                <b:panel title="Polls" collapsible="false">
+                    <h:dataTable styleClass="table table-striped" value="#{pollBean.pollList}" var="poll">
+                        <h:column>
+                            <f:facet name="header">
+                                Title
+                            </f:facet>
+                            <h:outputText value="#{poll.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                Description
+                            </f:facet>
+                            <h:outputText value="#{poll.description}"/>
+                        </h:column>
+                        <h:column>
+                            <!-- Add Edit / Delete Actions here-->
+                        </h:column>
+                    </h:dataTable>
+                    <h:link value="Neuer Poll" outcome="newPoll" />
+                </b:panel>
+            </b:row>
+        </b:container>
+    </ui:define>
+</ui:composition>

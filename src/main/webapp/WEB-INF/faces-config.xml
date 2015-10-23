@@ -13,6 +13,7 @@
         <navigation-case>
             <from-outcome>users</from-outcome>
             <to-view-id>/users.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
         <navigation-case>
             <from-outcome>userEdit</from-outcome>
@@ -21,10 +22,19 @@
         <navigation-case>
             <from-outcome>polls</from-outcome>
             <to-view-id>/polls.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
         <navigation-case>
             <from-outcome>welcome</from-outcome>
             <to-view-id>/welcome.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>newUser</from-outcome>
+            <to-view-id>/newUser.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>newPoll</from-outcome>
+            <to-view-id>/newPoll.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/templates/default/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <b:container>
+            <b:row>
+                <b:panel title="Neuen Poll erstellen" collapsible="false">
+                    <h:form id="newPollForm">
+                        <h:panelGrid id="newPollPanel">
+                            <h:outputLabel for="title" value="Title:"/>
+                            <b:inputText id="title" value="#{newPollBean.poll.title}" requiredMessage="Title required.">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="4" maximum="200"/>
+                            </b:inputText>
+                            <h:message for="title"/>
+                            <h:outputLabel for="description" value="Description"/>
+                            <h:inputTextarea id="description" value="#{newPollBean.poll.description}"
+                                             requiredMessage="Description required.">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="4" maximum="200"/>
+                            </h:inputTextarea>
+                            <h:message for="description"/>
+                            <h:outputLabel for="startAt" value="Staret am"/>
+                            <b:datepicker id="startAt" value="#{newPollBean.poll.startAt}"/>
+                            <h:message for="startAt"/>
+                            <h:outputLabel for="endAt" value="Endet am"/>
+                            <b:datepicker id="endAt" value="#{newPollBean.poll.endAt}"/>
+                            <h:message for="endAt"/>
+                            <b:commandButton action="#{newPollBean.createPoll}"
+                                             value="Speichern">
+                            </b:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                    <h:link value="Alle Polls" outcome="polls" />
+                </b:panel>
+            </b:row>
+        </b:container>
+    </ui:define>
+</ui:composition>

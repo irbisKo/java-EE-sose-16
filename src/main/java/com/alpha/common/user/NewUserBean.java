@@ -5,21 +5,14 @@ import com.alpha.service.IUserService;
 import com.alpha.service.UserService;
 import com.alpha.util.EmailSender;
 import com.alpha.util.FlashMessage;
-import com.alpha.util.MessageSender;
 import com.alpha.util.PasswordEncryption;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.mail.MessagingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
-/**
- * Created by erwinschens on 23.10.15.
- */
 @ManagedBean
 @ViewScoped
 public class NewUserBean {
